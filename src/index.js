@@ -9,14 +9,16 @@ import './styles/index.css'
 import { Techs } from './scripts/front_end_techs'
 import { Subcribe } from './scripts/subcribe_form'
 import { UserCard } from './scripts/user_card'
-import { HexaColorGenerator } from './scripts/hex_generator'
+import { RGBColorGenerator } from './scripts/rgb_generator'
+import { NumberGenerator } from './scripts/number_generator'
 
 const App = () => (
     <div className="container">
         <Techs />
         <Subcribe />
         <UserCard />
-        <HexaColorGenerator />
+        <RGBColorGenerator />
+        <NumberGenerator quantity={31}/>
     </div>
 )
 

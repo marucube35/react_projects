@@ -1,5 +1,5 @@
 /* Hexadecimal color generator */
-.hexa-generator {
+.rgb-generator {
     display: flex;
     flex-direction: column;
     align-items: center;

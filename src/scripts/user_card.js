@@ -52,7 +52,7 @@ export const UserCard = () => (
             <img className="user-avatar" src={user.avatar} alt="Avatar"></img>
             <h3 className="user-name">
                 {user.name}
-                <i class="user-check-icon fas fa-check"></i>
+                <i className="user-check-icon fas fa-check"></i>
             </h3>
             <p className="user-title-country">
                 {user.title + ', ' + user.country}
