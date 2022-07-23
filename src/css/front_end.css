@@ -1,0 +1,17 @@
+/* Front end technologies */
+.techs-title {
+    text-align: center;
+    margin: 12px;
+    font-weight: 500;
+    font-size: 3.4rem;
+}
+.techs-logos {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 43px 0;
+}
+.techs-logo {
+    width: 15%;
+    object-fit: contain;
+}
