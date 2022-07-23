@@ -2,10 +2,12 @@
 .subcribe-wrapper {
     background-color: #c2e6f4;
     padding: 36px;
+    display: flex;
+    justify-content: center;
 }
 .subcribe-form {
     width: 60%;
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,9 +25,11 @@
 }
 .subcribe-inputs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin: 8px 0;
-    width: 60%;
+    width: 80%;
 }
 .subcribe-input {
     width: 26%;
@@ -34,6 +38,8 @@
     border: none;
     outline: none;
     border-radius: 6px;
+    margin: 4px;
+    min-width: 160px;
 }
 .subcribe-input::placeholder {
     color: #adb0b3;

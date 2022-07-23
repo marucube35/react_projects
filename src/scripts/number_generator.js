@@ -8,7 +8,7 @@ import { isPrime } from './utilities'
 const generateNumber = (quantity) => {
     const numbers = []
 
-    for (let i = 0; i <= quantity; i++) numbers.push(i)
+    for (let i = 0; i <= quantity - 1; i++) numbers.push(i)
     return numbers
 }
 

@@ -8,10 +8,12 @@
     font-size: 5.4rem;
     font-weight: 500;
     margin-bottom: 12px;
+    text-align: center;
 }
 .numbers-subtitle {
     font-size: 3.8rem;
     margin-bottom: 32px;
+    text-align: center;
 }
 .numbers {
     display: flex;
@@ -29,6 +31,7 @@
     background-color: #000;
     color: #fff;
     margin: 1px;
+    min-width: 200px;
 }
 .number--green {
     background-color: #21bf73;

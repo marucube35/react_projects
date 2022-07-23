@@ -1,6 +1,6 @@
 export const isPrime = (number) => {
     for (let i = 2; i <= Math.sqrt(number); i++) {
-        if (number % i == 0) return false
+        if (number % i === 0) return false
     }
     return number > 1
 }
@@ -11,7 +11,7 @@ export const generateHexColor = () => {
 
     for (let i = 0; i < 6; i++) {
         let type = Math.round(1 + Math.random() * 1)
-        if (type == 1) hexa += Math.round(Math.random() * 9)
+        if (type === 1) hexa += Math.round(Math.random() * 9)
         else hexa += chars[Math.round(Math.random() * 5)]
     }
 
@@ -21,7 +21,7 @@ export const generateHexColor = () => {
 export const generateRGBColor = (opacity = 1) => {
     let chars = 'rgb('
     for (let i = 0; i < 3; i++) {
-        chars += Math.round(1 + Math.random() * 255) + (i == 2 ? '' : ',')
+        chars += Math.round(1 + Math.random() * 255) + (i === 2 ? '' : ',')
     }
     return chars + `, ${opacity})`
 }

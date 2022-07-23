@@ -11,9 +11,9 @@ const generateColor = (number) => {
     return palette
 }
 export const RGBColorGenerator = () => (
-    <div className="rgb-generator-wrapper">
+    <div className="rgb-colors-wrapper">
         {generateColor(5).map((color) => (
-            <div style={{ backgroundColor: color }} className="color" key={color}>
+            <div style={{ backgroundColor: color }} className="rgb-color" key={color}>
                 {color}
             </div>
         ))}
