@@ -12,6 +12,7 @@ import { UserCard } from './user_card'
 import { RGBColorGenerator } from './rgb_generator'
 import { NumberGenerator } from './number_generator'
 import { HexColorGenerator } from './hex_generator'
+import { WorldPopulation } from './world_population'
 
 const App = () => (
     <div className="container">
@@ -21,6 +22,7 @@ const App = () => (
         <RGBColorGenerator />
         <NumberGenerator quantity={32} />
         <HexColorGenerator quantity={32} />
+        <WorldPopulation />
     </div>
 )
 

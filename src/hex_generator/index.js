@@ -26,8 +26,8 @@ const HexColor = ({ quantity }) => {
 
 export const HexColorGenerator = ({ quantity }) => (
     <div className="hex-colors-wrapper">
-        <h1 className="hex-colors-title">Hexadecimal Color Generator</h1>
-        <p className="hex-colors-subtitle">Builed with React</p>
+        <h1 className="hex-colors-title">30 Days of React</h1>
+        <p className="hex-colors-subtitle">Hexadecimal Color Generator</p>
         <div className="hex-colors">
             <HexColor quantity={quantity} />
         </div>

@@ -32,8 +32,8 @@ export const NumberGenerator = ({ quantity }) => {
     const numbers = generateNumber(quantity)
     return (
         <div className="numbers-wrapper">
-            <h1 className="numbers-title">Number Generator</h1>
-            <p className="numbers-subtitle">Builded with ReactJS</p>
+            <h1 className="numbers-title">30 Days of React</h1>
+            <p className="numbers-subtitle">Number Generator</p>
             <div className="numbers">
                 <Number numbers={numbers} />
             </div>
