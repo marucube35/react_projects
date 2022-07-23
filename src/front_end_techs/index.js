@@ -7,20 +7,25 @@ import react from './images/react.png'
 // CSS
 import './index.css'
 
-// Front end technologies
+// Data
 const logos = [html, css, js, react]
-export const Techs = () => (
-    <div className="techs-wrapper">
-        <h1 className="techs-title">Front End Technologies</h1>
-        <div className="techs-logos">
-            {logos.map((logo) => (
-                <img
-                    className="techs-logo"
-                    src={logo}
-                    alt="Tech Logo"
-                    key={logo}
-                ></img>
-            ))}
+
+// Front end technologies
+export const Techs = (props) => {
+    const { mode } = props.state
+    return (
+        <div className={`techs-wrapper ${mode}-mode`}>
+            <h1 className="techs-title">Front End Technologies</h1>
+            <div className="techs-logos">
+                {logos.map((logo) => (
+                    <img
+                        className="techs-logo"
+                        src={logo}
+                        alt="Tech Logo"
+                        key={logo}
+                    ></img>
+                ))}
+            </div>
         </div>
-    </div>
-)
+    )
+}

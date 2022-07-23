@@ -13,18 +13,38 @@ import { RGBColorGenerator } from './rgb_generator'
 import { NumberGenerator } from './number_generator'
 import { HexColorGenerator } from './hex_generator'
 import { WorldPopulation } from './world_population'
+import { DarkModeButton } from './dark_mode'
 
-const App = () => (
-    <div className="container">
-        <Techs />
-        <Subcribe />
-        <UserCard />
-        <RGBColorGenerator />
-        <NumberGenerator quantity={32} />
-        <HexColorGenerator quantity={32} />
-        <WorldPopulation />
-    </div>
-)
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            mode: 'light'
+        }
+    }
+    changeMode = () => {
+        this.setState({
+            mode: this.state.mode === 'light' ? 'dark' : 'light'
+        })
+    }
+    render() {
+        return (
+            <div className="container">
+                <Techs state={this.state} />
+                <Subcribe state={this.state} />
+                <UserCard />
+                <RGBColorGenerator />
+                <NumberGenerator quantity={32} />
+                <HexColorGenerator quantity={32} />
+                <WorldPopulation />
+                <DarkModeButton
+                    state={this.state}
+                    changeMode={this.changeMode}
+                />
+            </div>
+        )
+    }
+}
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
