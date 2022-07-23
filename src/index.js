@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // CSS
-import './index.css'
+import './main.css'
 
 // Components
 import { Techs } from './front_end_techs'
