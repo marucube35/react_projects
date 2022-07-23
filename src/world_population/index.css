@@ -24,14 +24,14 @@
 .world-country {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     font-size: 2.2rem;
-    font-weight: 500;
+    font-weight: 600;
     margin: 8px 0;
 }
 .world-name {
     text-transform: uppercase;
-    min-width: 12%;
+    min-width: 10%;
 }
 .world-bar {
     min-width: 74%;
@@ -43,5 +43,5 @@
 }
 .world-population {
     margin-left: 12px;
-    min-width: 10%;
+    min-width: 12%;
 }

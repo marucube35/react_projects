@@ -4,7 +4,6 @@ import './index.css'
 // Data
 import { tenHighestPopulation } from './data'
 const WORLD_POPULATION = tenHighestPopulation[0].population
-const VISUALIZE_WIDTH = 1030
 
 // Functions
 const insert = (str, index, value) => {
@@ -17,12 +16,13 @@ const formatPopulation = (population) => {
     for (let i = str.length - 3; i >= 0; i -= 3) {
         if (i !== 0) str = insert(str, i, ',')
     }
+
     return str
 }
 
 const visualize = (population, world) => {
     const proportion = population / world
-    const width = proportion * VISUALIZE_WIDTH
+    const width = proportion * 100 + '%'
     const style = { width }
     return style
 }
