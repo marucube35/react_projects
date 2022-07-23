@@ -1,12 +1,12 @@
 // Images
-import avatar from '../images/avatar.png'
-import check from '../images/check.png'
+import avatar from './images/avatar.png'
+import check from './images/check.png'
 
 // CSS
-import '../styles/user_card.css'
+import './index.css'
 
 // Functions
-import { getCurrentDateTime } from './utilities'
+import { getCurrentDateTime } from '../utilities.js'
 
 // User card
 const user = {

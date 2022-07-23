@@ -1,5 +1,5 @@
 // CSS
-import '../styles/subcribe_form.css'
+import './index.css'
 
 // Subcribe form
 const inputs = ['First name', 'Last name', 'Email']

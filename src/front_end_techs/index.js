@@ -1,11 +1,11 @@
 // Images
-import html from '../images/html.png'
-import css from '../images/css.png'
-import js from '../images/js.png'
-import react from '../images/react.png'
+import html from './images/html.png'
+import css from './images/css.png'
+import js from './images/js.png'
+import react from './images/react.png'
 
 // CSS
-import '../styles/front_end_techs.css'
+import './index.css'
 
 // Front end technologies
 const logos = [html, css, js, react]

@@ -6,12 +6,12 @@ import ReactDOM from 'react-dom'
 import './index.css'
 
 // Components
-import { Techs } from './scripts/front_end_techs'
-import { Subcribe } from './scripts/subcribe_form'
-import { UserCard } from './scripts/user_card'
-import { RGBColorGenerator } from './scripts/rgb_generator'
-import { NumberGenerator } from './scripts/number_generator'
-import { HexColorGenerator } from './scripts/hex_generator'
+import { Techs } from './front_end_techs'
+import { Subcribe } from './subcribe_form'
+import { UserCard } from './user_card'
+import { RGBColorGenerator } from './rgb_generator'
+import { NumberGenerator } from './number_generator'
+import { HexColorGenerator } from './hex_generator'
 
 const App = () => (
     <div className="container">

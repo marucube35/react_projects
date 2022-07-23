@@ -1,8 +1,8 @@
 // CSS
-import '../styles/hex_generator.css'
+import './index.css'
 
 // Functions
-import { generateHexColor } from './utilities'
+import { generateHexColor } from '../utilities.js'
 
 // Hexa color generatore
 const generateColor = (quantity) => {

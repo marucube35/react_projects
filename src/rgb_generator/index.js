@@ -1,8 +1,8 @@
 // CSS
-import '../styles/rgb_generator.css'
+import './index.css'
 
 // Functions
-import { generateRGBColor } from './utilities'
+import { generateRGBColor } from '../utilities.js'
 
 // Hexa color generatore
 const generateColor = (number) => {
@@ -13,7 +13,11 @@ const generateColor = (number) => {
 export const RGBColorGenerator = () => (
     <div className="rgb-colors-wrapper">
         {generateColor(5).map((color) => (
-            <div style={{ backgroundColor: color }} className="rgb-color" key={color}>
+            <div
+                style={{ backgroundColor: color }}
+                className="rgb-color"
+                key={color}
+            >
                 {color}
             </div>
         ))}
