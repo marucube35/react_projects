@@ -3,19 +3,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 // CSS
-import './css/index.css'
-import './css/front_end.css'
-import './css/subcribe_form.css'
-import './css/user_card.css'
-import './css/hexa_genarator.css'
+import './index.css'
+import './front_end.css'
+import './subcribe_form.css'
+import './user_card.css'
+import './hexa_genarator.css'
 
 // Images
-import html from './images/html.png'
-import css from './images/css.png'
-import js from './images/js.png'
-import react from './images/react.png'
-import avatar from './images/avatar.png'
-import check from './images/check.png'
+import html from '../public/html.png'
+import css from '../public/css.png'
+import js from '../public/js.png'
+import react from '../public/react.png'
+import avatar from '../public/avatar.png'
+import check from '../public/check.png'
 
 // Functions
 import { getCurrentDateTime, generateHexColor } from './utilities.js'
