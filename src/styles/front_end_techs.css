@@ -1,4 +1,8 @@
 /* Front end technologies */
+.techs-wrapper{
+    background-color: #fff;
+    padding: 20px;
+}
 .techs-title {
     text-align: center;
     margin: 12px;

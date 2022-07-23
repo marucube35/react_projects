@@ -1,13 +1,11 @@
 /* User card */
 .user-wrapper {
     --primary-color: #2acfcf;
-    margin: 16px 12px;
     padding: 24px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-radius: 8px;
 }
 .user-card {
     display: flex;
