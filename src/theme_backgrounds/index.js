@@ -8,8 +8,11 @@ export class ThemeBackgrounds extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentTheme: 0
+            currentTheme: 0,
+            loaded: false
         }
+
+        setTimeout(this.loadTheme, 5000)
 
         const {
             data: { themes, backgrounds, buttonColors, colors }
@@ -19,6 +22,9 @@ export class ThemeBackgrounds extends React.Component {
         this.backgrounds = backgrounds
         this.buttonColors = buttonColors
         this.colors = colors
+    }
+    loadTheme = () => {
+        this.setState({ loaded: true })
     }
     getNextTheme = () => {
         const { currentTheme } = this.state
@@ -50,17 +56,19 @@ export class ThemeBackgrounds extends React.Component {
             color: colors[currentTheme]
         }
 
-        return (
-            <div style={backGroundStyle} className="seasons-wrapper">
-                <button
-                    onClick={this.changeTheme}
-                    style={buttonStyle}
-                    type="button"
-                    className="seasons-button"
-                >
-                    {themes[currentTheme]}
-                </button>
-            </div>
-        )
+        if (this.state.loaded)
+            return (
+                <div style={backGroundStyle} className="seasons-wrapper">
+                    <button
+                        onClick={this.changeTheme}
+                        style={buttonStyle}
+                        type="button"
+                        className="seasons-button"
+                    >
+                        {themes[currentTheme]}
+                    </button>
+                </div>
+            )
+        else return <div className="seasons-wrapper skeleton-screen"></div>
     }
 }
