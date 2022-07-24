@@ -21,6 +21,10 @@ export default class EventHandlers extends Component {
     handleBlur = () => {
         console.log('You are bluring out')
     }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('Form is submitted')
+    }
     // when mouse is moving
     handleMove = (e) => {
         console.log(`Cursor is at (${e.pageX},${e.pageY})`)
@@ -34,7 +38,7 @@ export default class EventHandlers extends Component {
         this.setState({ message: 'Leaving' })
     }
     // when click
-    handleClick = () => {
+    handleClick = (e) => {
         this.setState({ message: 'Click' })
     }
     // when double click
@@ -63,15 +67,19 @@ export default class EventHandlers extends Component {
             <div className="handlers-wrapper">
                 <h1 className="handlers-title">Event Handlers</h1>
                 <p className="handlers-subtitle">View output in console</p>
-                <input
-                    className="input-handler"
-                    type="text"
-                    onKeyDown={this.handleKeyDown}
-                    onKeyUp={this.handleKeyUp}
-                    onInput={this.handleInput}
-                    onBlur={this.handleBlur}
-                    placeholder="Key handler"
-                />
+
+                <form className="form-handler" onSubmit={this.handleSubmit}>
+                    <input
+                        className="input-handler"
+                        type="text"
+                        onKeyDown={this.handleKeyDown}
+                        onKeyUp={this.handleKeyUp}
+                        onInput={this.handleInput}
+                        onBlur={this.handleBlur}
+                        placeholder="Key handler"
+                    />
+                    <input className="button-handler" type="submit"></input>
+                </form>
                 <div
                     onMouseEnter={this.handleMouseEnter}
                     onMouseLeave={this.handleMouseLeave}
