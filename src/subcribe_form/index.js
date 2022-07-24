@@ -3,14 +3,9 @@ import './index.css'
 
 // Subcribe form
 const inputs = ['First name', 'Last name', 'Email']
-export const Subcribe = (props) => {
-    const { ...style } = props.state
-
-    // ignore light mode
-    if (style.backgroundColor === '#f0f1f7') style.backgroundColor = ''
-
+export const Subcribe = () => {
     return (
-        <div style={style} className="subcribe-wrapper">
+        <div className={`subcribe-wrapper`}>
             <form className="subcribe-form">
                 <h1 className="subcribe-title">Subcribe</h1>
                 <p className="subcribe-message">

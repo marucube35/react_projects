@@ -19,9 +19,3 @@
     width: 15%;
     object-fit: contain;
 }
-
-/* Dark mode */
-.techs-wrapper.dark-mode {
-    color: #fff;
-    background-color: #000;
-}

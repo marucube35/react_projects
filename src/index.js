@@ -29,18 +29,15 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className="container">
-                <Techs state={this.state} />
-                <Subcribe state={this.state} />
+            <div className={`container ${this.state.mode}-mode`}>
+                <Techs />
+                <Subcribe />
                 <UserCard />
                 <RGBColorGenerator />
                 <NumberGenerator quantity={32} />
                 <HexColorGenerator quantity={32} />
                 <WorldPopulation />
-                <DarkModeButton
-                    state={this.state}
-                    changeMode={this.changeMode}
-                />
+                <DarkModeButton state={this.state} changeMode={this.changeMode} />
             </div>
         )
     }

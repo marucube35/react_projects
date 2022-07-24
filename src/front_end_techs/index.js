@@ -11,10 +11,9 @@ import './index.css'
 const logos = [html, css, js, react]
 
 // Front end technologies
-export const Techs = (props) => {
-    const { mode } = props.state
+export const Techs = () => {
     return (
-        <div className={`techs-wrapper ${mode}-mode`}>
+        <div className={`techs-wrapper`}>
             <h1 className="techs-title">Front End Technologies</h1>
             <div className="techs-logos">
                 {logos.map((logo) => (

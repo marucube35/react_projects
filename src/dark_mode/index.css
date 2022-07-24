@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
 }
 .dark-mode-button {
     padding: 24px;
