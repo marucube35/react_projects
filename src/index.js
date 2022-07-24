@@ -14,6 +14,7 @@ import { NumberGenerator } from './number_generator'
 import { HexColorGenerator } from './hex_generator'
 import { WorldPopulation } from './world_population'
 import { DarkModeButton } from './dark_mode'
+import { RandomCountries } from './random_country'
 
 class App extends React.Component {
     constructor(props) {
@@ -37,7 +38,11 @@ class App extends React.Component {
                 <NumberGenerator quantity={32} />
                 <HexColorGenerator quantity={32} />
                 <WorldPopulation />
-                <DarkModeButton state={this.state} changeMode={this.changeMode} />
+                <DarkModeButton
+                    state={this.state}
+                    changeMode={this.changeMode}
+                />
+                <RandomCountries />
             </div>
         )
     }
