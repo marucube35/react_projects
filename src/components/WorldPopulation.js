@@ -2,7 +2,7 @@
 import { tenHighestPopulation } from '../data/tenHighestPopulation'
 
 // Country Visualization
-const CountryVisualization = ({ data: { country, population } }) => {
+const CountryVisualization = ({ data: { name, population } }) => {
     const WORLD_POPULATION = tenHighestPopulation[0].population
     const insert = (str, index, value) => {
         return (
@@ -27,12 +27,12 @@ const CountryVisualization = ({ data: { country, population } }) => {
         return style
     }
 
-    if (country === 'United States of America') country = 'USA'
-    if (country === 'Russian Federation') country = 'Russia'
-    
+    if (name === 'United States of America') name = 'USA'
+    if (name === 'Russian Federation') name = 'Russia'
+
     return (
-        <div key={country} className="world-country">
-            <p className="world-name">{country}</p>
+        <div className="world-country">
+            <p className="world-name">{name}</p>
             <div className="world-bar">
                 <div
                     style={visualize(population, WORLD_POPULATION)}
@@ -46,7 +46,9 @@ const CountryVisualization = ({ data: { country, population } }) => {
 
 // Countries Visualization
 const CountriesVisualization = ({ countries }) => {
-    return countries.map((country) => <CountryVisualization data={country} />)
+    return countries.map((country) => (
+        <CountryVisualization key={country.name} data={country} />
+    ))
 }
 
 // World population
