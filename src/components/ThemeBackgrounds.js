@@ -2,9 +2,9 @@
 import React from 'react'
 
 // CSS
-import './index.css'
+import '../styles/ThemeBackgrounds.css'
 
-export class ThemeBackgrounds extends React.Component {
+export default class ThemeBackgrounds extends React.Component {
     constructor(props) {
         super(props)
         this.state = {

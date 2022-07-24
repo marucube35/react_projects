@@ -1,8 +1,8 @@
 // CSS
-import './index.css'
+import '../styles/WorldPopulation.css'
 
 // Data
-import { tenHighestPopulation } from './data'
+import { tenHighestPopulation } from '../data/tenHighestPopulation'
 const WORLD_POPULATION = tenHighestPopulation[0].population
 
 // Functions
@@ -27,7 +27,6 @@ const visualize = (population, world) => {
     return style
 }
 
-// Country Visualization
 const CountryVisualization = ({ data: { country, population } }) => {
     if (country === 'United States of America') country = 'USA'
     if (country === 'Russian Federation') country = 'Russia'
@@ -51,13 +50,15 @@ const CountriesVisualization = ({ countries }) => {
 }
 
 // World population
-export const WorldPopulation = () => (
-    <div className="world-wrapper">
-        <h1 className="world-project">30 Days of React</h1>
-        <p className="world-title">World population</p>
-        <p className="world-subtitle">Ten most populated countries</p>
-        <div className="world-countries">
-            <CountriesVisualization countries={tenHighestPopulation} />
+export default function WorldPopulation() {
+    return (
+        <div className="world-wrapper">
+            <h1 className="world-project">30 Days of React</h1>
+            <p className="world-title">World population</p>
+            <p className="world-subtitle">Ten most populated countries</p>
+            <div className="world-countries">
+                <CountriesVisualization countries={tenHighestPopulation} />
+            </div>
         </div>
-    </div>
-)
+    )
+}

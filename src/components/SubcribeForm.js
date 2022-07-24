@@ -1,9 +1,9 @@
 // CSS
-import './index.css'
+import '../styles/SubcribeForm.css'
 
-// Subcribe form
 const inputs = ['First name', 'Last name', 'Email']
-export const Subcribe = () => {
+
+export default function SubcribeForm() {
     return (
         <div className={`subcribe-wrapper`}>
             <form className="subcribe-form">

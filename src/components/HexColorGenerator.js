@@ -1,10 +1,9 @@
 // CSS
-import './index.css'
+import '../styles/HexColorGenerator.css'
 
 // Functions
-import { generateHexColor } from '../utilities.js'
+import generateHexColor from '../utils/generateHexColor'
 
-// Hexa color generatore
 const generateColor = (quantity) => {
     const palette = []
     for (let i = 1; i <= quantity; i++) palette.push(generateHexColor())

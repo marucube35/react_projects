@@ -1,10 +1,9 @@
 // CSS
-import './index.css'
+import '../styles/NumberGenerator.css'
 
 // Functions
-import { isPrime } from '../utilities'
+import isPrime from '../utils/isPrime'
 
-// Number generator
 const generateNumber = (quantity) => {
     const numbers = []
 

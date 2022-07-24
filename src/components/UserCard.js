@@ -1,14 +1,13 @@
 // Images
-import avatar from './images/avatar.png'
-import check from './images/check.png'
+import avatar from '../assets/images/avatar.png'
+import check from '../assets/images/check.png'
 
 // CSS
-import './index.css'
+import '../styles/UserCard.css'
 
 // Functions
-import { getCurrentDateTime } from '../utilities.js'
+import getCurrentDateTime from '../utils/getCurrentDateTime'
 
-// User card
 const user = {
     avatar,
     check,
@@ -46,30 +45,32 @@ const user = {
     ],
     timestamp: getCurrentDateTime()
 }
-export const UserCard = () => (
-    <div className="user-wrapper">
-        <div className="user-card">
-            <img className="user-avatar" src={user.avatar} alt="Avatar"></img>
-            <h3 className="user-name">
-                {user.name}
-                <i className="user-check-icon fas fa-check"></i>
-            </h3>
-            <p className="user-title-country">
-                {user.title + ', ' + user.country}
+export default function UserCard() {
+    return (
+        <div className="user-wrapper">
+            <div className="user-card">
+                <img className="user-avatar" src={user.avatar} alt="Avatar"></img>
+                <h3 className="user-name">
+                    {user.name}
+                    <i className="user-check-icon fas fa-check"></i>
+                </h3>
+                <p className="user-title-country">
+                    {user.title + ', ' + user.country}
+                </p>
+            </div>
+
+            <h3 className="user-skills-title">Skills</h3>
+            <div className="user-skills">
+                {user.skills.map((skill) => (
+                    <span className="user-skill" key={skill}>
+                        {skill}
+                    </span>
+                ))}
+            </div>
+            <p className="user-time-stamp">
+                <i className="user-time-icon fas fa-clock-rotate-left"></i>
+                Joined on {user.timestamp}
             </p>
         </div>
-
-        <h3 className="user-skills-title">Skills</h3>
-        <div className="user-skills">
-            {user.skills.map((skill) => (
-                <span className="user-skill" key={skill}>
-                    {skill}
-                </span>
-            ))}
-        </div>
-        <p className="user-time-stamp">
-            <i className="user-time-icon fas fa-clock-rotate-left"></i>
-            Joined on {user.timestamp}
-        </p>
-    </div>
-)
+    )
+}

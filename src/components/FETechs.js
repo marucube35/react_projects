@@ -1,16 +1,13 @@
 // Images
-import html from './images/html.png'
-import css from './images/css.png'
-import js from './images/js.png'
-import react from './images/react.png'
-
+import html from '../assets/images/html.png'
+import css from '../assets/images/css.png'
+import js from '../assets/images/js.png'
+import react from '../assets/images/react.png'
 // CSS
-import './index.css'
+import '../styles/FETechs.css'
 
-// Data
 const logos = [html, css, js, react]
 
-// Front end technologies
 export default function FETechs() {
     return (
         <div className={`techs-wrapper`}>

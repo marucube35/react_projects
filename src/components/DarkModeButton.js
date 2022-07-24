@@ -2,10 +2,9 @@
 import React from 'react'
 
 // CSS
-import './index.css'
+import '../styles/DarkModeButton.css'
 
-// Dark mode button
-export class DarkModeButton extends React.Component {
+export default class DarkModeButton extends React.Component {
     render() {
         const { mode } = this.props.state
         const changeMode = this.props.changeMode

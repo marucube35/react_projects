@@ -2,10 +2,10 @@
 import React from 'react'
 
 // CSS
-import './index.css'
+import '../styles/RandomCountries.css'
 
 // Data
-import { countriesData as countries } from './countries_data.js'
+import { countriesData as countries } from '../data/countries_data'
 
 // Functions
 function capitalize(str) {
@@ -26,7 +26,7 @@ const formatPopulation = (population) => {
     return str
 }
 
-export class RandomCountries extends React.Component {
+export default class RandomCountries extends React.Component {
     constructor(props) {
         super(props)
         this.state = {

@@ -1,25 +1,27 @@
 // CSS
-import './index.css'
+import '../styles/RGBColorGenerator.css'
 
 // Functions
-import { generateRGBColor } from '../utilities.js'
+import generateRGBColor from '../utils/generateRGBColor'
 
-// Hexa color generatore
 const generateColor = (number) => {
     const palette = []
     for (let i = 1; i <= number; i++) palette.push(generateRGBColor())
     return palette
 }
-export const RGBColorGenerator = () => (
-    <div className="rgb-colors-wrapper">
-        {generateColor(5).map((color) => (
-            <div
-                style={{ backgroundColor: color }}
-                className="rgb-color"
-                key={color}
-            >
-                {color}
-            </div>
-        ))}
-    </div>
-)
+
+export default function RGBColorGenerator() {
+    return (
+        <div className="rgb-colors-wrapper">
+            {generateColor(5).map((color) => (
+                <div
+                    style={{ backgroundColor: color }}
+                    className="rgb-color"
+                    key={color}
+                >
+                    {color}
+                </div>
+            ))}
+        </div>
+    )
+}
