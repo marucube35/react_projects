@@ -29,6 +29,7 @@ import '../styles/WorldPopulation.css'
 import '../styles/DarkModeButton.css'
 import '../styles/RandomCountries.css'
 import '../styles/ThemeBackgrounds.css'
+import '../styles/EventHandlers.css'
 
 // Components
 import FETechs from './FETechs'
@@ -41,6 +42,7 @@ import WorldPopulation from './WorldPopulation'
 import DarkModeButton from './DarkModeButton'
 import RandomCountries from './RandomCountries'
 import ThemeBackgrounds from './ThemeBackgrounds'
+import EventHandlers from './EventHandlers'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -84,6 +86,7 @@ export default class App extends React.Component {
                     <RandomCountries />
                     <ThemeBackgrounds data={this.seasons} />
                     <ThemeBackgrounds data={this.timeOfDays} />
+                    <EventHandlers />
                 </div>
             </React.Fragment>
         )
