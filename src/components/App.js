@@ -30,6 +30,7 @@ import '../styles/DarkModeButton.css'
 import '../styles/RandomCountries.css'
 import '../styles/ThemeBackgrounds.css'
 import '../styles/EventHandlers.css'
+import '../styles/ObjectChasing.css'
 
 // Components
 import FETechs from './FETechs'
@@ -43,6 +44,7 @@ import DarkModeButton from './DarkModeButton'
 import RandomCountries from './RandomCountries'
 import ThemeBackgrounds from './ThemeBackgrounds'
 import EventHandlers from './EventHandlers'
+import ObjectChasing from './ObjectChasing'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -70,25 +72,24 @@ export default class App extends React.Component {
     }
     render() {
         return (
-            <React.Fragment>
-                <div className={`container ${this.state.mode}-mode`}>
-                    <FETechs logos={[html, css, js, react]} />
-                    <SubcribeForm />
-                    <UserCard avatar={avatar} check={check} />
-                    <RGBColorGenerator />
-                    <NumberGenerator quantity={32} />
-                    <HexColorGenerator quantity={32} />
-                    <WorldPopulation />
-                    <DarkModeButton
-                        state={this.state}
-                        changeMode={this.changeMode}
-                    />
-                    <RandomCountries />
-                    <ThemeBackgrounds data={this.seasons} />
-                    <ThemeBackgrounds data={this.timeOfDays} />
-                    <EventHandlers />
-                </div>
-            </React.Fragment>
+            <div className={`container ${this.state.mode}-mode`}>
+                <FETechs logos={[html, css, js, react]} />
+                <SubcribeForm />
+                <UserCard avatar={avatar} check={check} />
+                <RGBColorGenerator />
+                <NumberGenerator quantity={32} />
+                <HexColorGenerator quantity={32} />
+                <WorldPopulation />
+                <DarkModeButton
+                    state={this.state}
+                    changeMode={this.changeMode}
+                />
+                <RandomCountries />
+                <ThemeBackgrounds data={this.seasons} />
+                <ThemeBackgrounds data={this.timeOfDays} />
+                <EventHandlers />
+                <ObjectChasing />
+            </div>
         )
     }
 }
