@@ -28,7 +28,7 @@ const Number = ({ numbers }) => {
     ))
 }
 
-export const NumberGenerator = ({ quantity }) => {
+export default function NumberGenerator({ quantity }) {
     const numbers = generateNumber(quantity)
     return (
         <div className="numbers-wrapper">

@@ -11,7 +11,7 @@ import './index.css'
 const logos = [html, css, js, react]
 
 // Front end technologies
-export const Techs = () => {
+export default function FETechs() {
     return (
         <div className={`techs-wrapper`}>
             <h1 className="techs-title">Front End Technologies</h1>
