@@ -1,55 +1,52 @@
-// Images
-import avatar from '../assets/images/avatar.png'
-import check from '../assets/images/check.png'
-
-// CSS
-import '../styles/UserCard.css'
-
 // Functions
 import getCurrentDateTime from '../utils/getCurrentDateTime'
 
-const user = {
-    avatar,
-    check,
-    name: 'Lê Minh Quân',
-    title: 'Student',
-    country: 'Việt Nam',
-    skills: [
-        'HTML',
-        'CSS',
-        'JS',
-        'React',
-        'NodeJS',
-        'ExpressJS',
-        'MongoDB',
-        'MySQL',
-        'Git',
-        'Gulp',
-        'Webpack',
-        'Babel',
-        'Bower',
-        'NPM',
-        'Sass',
-        'Bootstrap',
-        'Materialize',
-        'Sketch',
-        'Photoshop',
-        'Illustrator',
-        'After Effects',
-        'Premiere Pro',
-        'Lightroom',
-        'XD',
-        'InDesign',
-        'Dreamweaver',
-        'Flash'
-    ],
-    timestamp: getCurrentDateTime()
-}
-export default function UserCard() {
+export default function UserCard(props) {
+    const user = {
+        avatar: props.avatar,
+        check: props.check,
+        name: 'Lê Minh Quân',
+        title: 'Student',
+        country: 'Việt Nam',
+        skills: [
+            'HTML',
+            'CSS',
+            'JS',
+            'React',
+            'NodeJS',
+            'ExpressJS',
+            'MongoDB',
+            'MySQL',
+            'Git',
+            'Gulp',
+            'Webpack',
+            'Babel',
+            'Bower',
+            'NPM',
+            'Sass',
+            'Bootstrap',
+            'Materialize',
+            'Sketch',
+            'Photoshop',
+            'Illustrator',
+            'After Effects',
+            'Premiere Pro',
+            'Lightroom',
+            'XD',
+            'InDesign',
+            'Dreamweaver',
+            'Flash'
+        ],
+        timestamp: getCurrentDateTime()
+    }
     return (
         <div className="user-wrapper">
             <div className="user-card">
-                <img className="user-avatar" src={user.avatar} alt="Avatar"></img>
+                <img
+                    className="user-avatar"
+                    src={user.avatar}
+                    alt="Avatar"
+                ></img>
                 <h3 className="user-name">
                     {user.name}
                     <i className="user-check-icon fas fa-check"></i>

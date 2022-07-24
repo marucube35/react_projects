@@ -1,6 +1,3 @@
-// CSS
-import '../styles/RGBColorGenerator.css'
-
 // Functions
 import generateRGBColor from '../utils/generateRGBColor'
 

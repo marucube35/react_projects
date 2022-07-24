@@ -1,9 +1,6 @@
 // React
 import React from 'react'
 
-// CSS
-import '../styles/ThemeBackgrounds.css'
-
 export default class ThemeBackgrounds extends React.Component {
     constructor(props) {
         super(props)

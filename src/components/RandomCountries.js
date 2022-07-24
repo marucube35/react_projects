@@ -1,30 +1,8 @@
 // React
 import React from 'react'
 
-// CSS
-import '../styles/RandomCountries.css'
-
 // Data
 import { countriesData as countries } from '../data/countries_data'
-
-// Functions
-function capitalize(str) {
-    return str.at(0).toUpperCase() + str.slice(1)
-}
-
-const insert = (str, index, value) => {
-    return str.substring(0, index) + value + str.substring(index, str.length)
-}
-
-const formatPopulation = (population) => {
-    let str = population.toString()
-
-    for (let i = str.length - 3; i >= 0; i -= 3) {
-        if (i !== 0) str = insert(str, i, ',')
-    }
-
-    return str
-}
 
 export default class RandomCountries extends React.Component {
     constructor(props) {
@@ -34,7 +12,23 @@ export default class RandomCountries extends React.Component {
         }
         this.countries = countries
     }
+    capitalize = (str) => {
+        return str.at(0).toUpperCase() + str.slice(1)
+    }
+    insert = (str, index, value) => {
+        return (
+            str.substring(0, index) + value + str.substring(index, str.length)
+        )
+    }
+    formatPopulation = (population) => {
+        let str = population.toString()
 
+        for (let i = str.length - 3; i >= 0; i -= 3) {
+            if (i !== 0) str = this.insert(str, i, ',')
+        }
+
+        return str
+    }
     changeCountry = () => {
         const length = this.countries.length
         let randomIndex = Math.round(Math.random() * length) % length
@@ -46,12 +40,12 @@ export default class RandomCountries extends React.Component {
         const infosElement = []
         for (const info in infos) {
             if (info === 'population')
-                infos[info] = formatPopulation(infos[info])
+                infos[info] = this.formatPopulation(infos[info])
             if (info === 'languages') infos[info] = infos[info].join(', ')
 
             infosElement.push(
                 <p key={info} className={`random-country-title`}>
-                    {capitalize(info) + ': '}
+                    {this.capitalize(info) + ': '}
                     <span className={`random-country-info`}>{infos[info]}</span>
                 </p>
             )

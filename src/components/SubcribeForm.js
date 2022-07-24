@@ -1,9 +1,5 @@
-// CSS
-import '../styles/SubcribeForm.css'
-
-const inputs = ['First name', 'Last name', 'Email']
-
 export default function SubcribeForm() {
+    const inputs = ['First name', 'Last name', 'Email']
     return (
         <div className={`subcribe-wrapper`}>
             <form className="subcribe-form">
@@ -21,7 +17,7 @@ export default function SubcribeForm() {
                         ></input>
                     ))}
                 </div>
-                <button type="submit" className="subcribe-button">
+                <button type="button" className="subcribe-button">
                     Subcribe
                 </button>
             </form>
