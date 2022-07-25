@@ -66,6 +66,10 @@ export default class App extends React.Component {
             buttonColors: ['#ffb4b4', '#fff9ca', '#ffdeb4', '#b2a4ff'],
             colors: ['#fff', '#000', '#000', '#fff']
         }
+        this.patterns = {
+            names: /^[a-zA-Z]{3,12}$/gi,
+            email: /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/gi
+        }
     }
     changeMode = () => {
         this.setState({
@@ -91,7 +95,7 @@ export default class App extends React.Component {
                 <ThemeBackgrounds data={this.timeOfDays} />
                 <EventHandlers />
                 <ObjectChasing />
-                <UltimateValidation />
+                <UltimateValidation patterns={this.patterns} />
             </div>
         )
     }

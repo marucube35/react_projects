@@ -24,8 +24,6 @@ const options = [
     }
 ]
 
-// mapping the options to list(array) of JSX options
-
 const selectOptions = options.map(({ value, label }) => (
     <option key={value} value={value}>
         {label}
@@ -50,7 +48,7 @@ export default class UltimateValidation extends Component {
             css: false,
             javascript: false
         },
-        touched: {
+        focused: {
             firstName: false,
             lastName: false
         }
@@ -67,22 +65,42 @@ export default class UltimateValidation extends Component {
         } else {
             this.setState({ [name]: value })
         }
+
+        this.setState({ focused: { ...this.state.focused, [name]: false } })
     }
     handleBlur = (e) => {
         const { name } = e.target
-        this.setState({ touched: { ...this.state.touched, [name]: true } })
+        this.setState({ focused: { ...this.state.focused, [name]: true } })
     }
     validate = () => {
-        const errors = {
-            firstName: ''
+        const state = this.state
+        const patterns = this.props.patterns
+        const errors = {}
+
+        function isName(nameType) {
+            if (
+                state[nameType] &&
+                state.focused[nameType] &&
+                !state[nameType].match(patterns.names)
+            ) {
+                errors[nameType] =
+                    'Name must be between 3 and 12 and only characters are accepted'
+            }
         }
 
-        if (
-            (this.state.touched.firstName && this.state.firstName.length < 3) ||
-            (this.state.touched.firstName && this.state.firstName.length > 12)
-        ) {
-            errors.firstName = 'First name must be between 2 and 12'
+        function isEmail() {
+            if (
+                state.email &&
+                state.focused.email &&
+                !state.email.match(patterns.email)
+            ) {
+                errors.email = 'Email is invalid'
+            }
         }
+
+        isName('firstName')
+        isName('lastName')
+        isEmail()
         return errors
     }
     handleSubmit = (e) => {
@@ -97,14 +115,13 @@ export default class UltimateValidation extends Component {
                 formattedSkills.push(key.toUpperCase())
             }
         }
-
         data.skills = formattedSkills
 
         console.log(data)
     }
 
     render() {
-        const { firstName } = this.validate()
+        const errors = this.validate()
         return (
             <div className="validation-wrapper">
                 <h3>Add Student</h3>
@@ -118,9 +135,9 @@ export default class UltimateValidation extends Component {
                             onChange={this.handleChange}
                             onBlur={this.handleBlur}
                             placeholder="First Name"
-                        />{' '}
+                        />
                         <br />
-                        <small>{firstName}</small>
+                        <small>{errors.firstName}</small>
                     </div>
 
                     <div className="form-group">
@@ -130,8 +147,11 @@ export default class UltimateValidation extends Component {
                             name="lastName"
                             value={this.state.lastName}
                             onChange={this.handleChange}
+                            onBlur={this.handleBlur}
                             placeholder="Last Name"
                         />
+                         <br />
+                        <small>{errors.lastName}</small>
                     </div>
 
                     <div className="form-group">
@@ -170,7 +190,7 @@ export default class UltimateValidation extends Component {
                     <div className="form-group">
                         <label htmlFor="favoriteColor">Favorite Color</label>
                         <input
-                            type="color"
+                            // type="color"
                             id="favoriteColor"
                             name="favoriteColor"
                             value={this.state.favoriteColor}
