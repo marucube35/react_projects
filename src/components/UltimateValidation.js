@@ -75,27 +75,26 @@ export default class UltimateValidation extends Component {
     handleBlur = (e) => {
         const { name } = e.target
 
-        this.setState({ focused: { ...this.state.focused, [name]: true } })
-    }
-    setError = (type, error) => {
-        const state = this.state
-        state.errors[type] = error
-    }
-    isValid = (type) => {
-        if (
-            this.state.focused[type] &&
-            !this.state[type].match(this.props.patterns[type])
+        this.setState(
+            { focused: { ...this.state.focused, [name]: true } },
+            () => this.isValid(name)
         )
-            this.setError(type, this.props.messages[type])
     }
-    isEmpty = (type) => {
-        if (this.state[type] === '') {
-            this.setError(type, 'This field can not be empty')
-        }
+    setError = (name, error) => {
+        this.setState({
+            errors: { ...this.state.errors, [name]: error }
+        })
     }
-    validate = (types, validator) => {
-        for (const type of types) {
-            validator(type)
+    isValid = (name) => {
+        if (
+            this.state.focused[name] &&
+            !this.state[name].match(this.props.patterns[name])
+        )
+            this.setError(name, this.props.messages[name])
+    }
+    isEmpty = (name) => {
+        if (this.state[name] === '') {
+            this.setError(name, 'This field can not be empty')
         }
     }
     handleSubmit = (e) => {
@@ -104,6 +103,7 @@ export default class UltimateValidation extends Component {
         // Get data
         const { skills, ...data } = this.state
 
+        // Format data
         const formattedSkills = []
         for (const key in skills) {
             if (skills[key]) {
@@ -117,10 +117,6 @@ export default class UltimateValidation extends Component {
     }
 
     render() {
-        this.validate(
-            ['firstName', 'lastName', 'email', 'tel', 'country'],
-            this.isValid
-        )
         return (
             <div className="validation-wrapper">
                 <h3 className="validation-title">Ultimate Form</h3>
