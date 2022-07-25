@@ -59,7 +59,7 @@ export default class EventHandlers extends Component {
     }
     // when option is changed
     handleChange = (e) => {
-        console.log('You choose', e.target.value)
+        console.log('New value:', e.target.value)
     }
 
     render() {
@@ -76,6 +76,7 @@ export default class EventHandlers extends Component {
                         onKeyUp={this.handleKeyUp}
                         onInput={this.handleInput}
                         onBlur={this.handleBlur}
+                        onChange={this.handleChange}
                         placeholder="Key handler"
                     />
                     <input className="button-handler" type="submit"></input>
