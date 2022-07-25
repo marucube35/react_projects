@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 const options = [
     {
-        value: '',
+        value: '0',
         label: '-- Select Country--'
     },
     {
@@ -35,11 +35,11 @@ export default class UltimateValidation extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        country: '',
         tel: '',
         dateOfBirth: '',
-        favoriteColor: '',
+        favoriteColor: '#000000',
         weight: '',
+        country: '',
         gender: '',
         file: '',
         bio: '',
@@ -51,7 +51,8 @@ export default class UltimateValidation extends Component {
         focused: {
             firstName: false,
             lastName: false
-        }
+        },
+        errors: {}
     }
     handleChange = (e) => {
         const { name, value, type, checked } = e.target
@@ -72,40 +73,35 @@ export default class UltimateValidation extends Component {
         const { name } = e.target
         this.setState({ focused: { ...this.state.focused, [name]: true } })
     }
+    required(type) {
+        console.log(`Check empty input [${type}]: ${this.state[type]}`)
+        if (!this.state[type])
+            this.setState({ [type]: 'This field can not be empty' })
+    }
     validate = () => {
         const state = this.state
-        const patterns = this.props.patterns
-        const errors = {}
+        const { patterns, messages } = this.props
 
-        function isName(nameType) {
-            if (
-                state[nameType] &&
-                state.focused[nameType] &&
-                !state[nameType].match(patterns.names)
-            ) {
-                errors[nameType] =
-                    'Name must be between 3 and 12 and only characters are accepted'
-            }
+        function isValid(type) {
+            console.log(`Validating [${type}]: ${state[type]}`)
+            if (!state.focused[type] || state[type].match(patterns[type])) {
+                state.errors[type] = ''
+            } else state.errors[type] = messages[type]
         }
 
-        function isEmail() {
-            if (
-                state.email &&
-                state.focused.email &&
-                !state.email.match(patterns.email)
-            ) {
-                errors.email = 'Email is invalid'
-            }
-        }
-
-        isName('firstName')
-        isName('lastName')
-        isEmail()
-        return errors
+        isValid('firstName')
+        isValid('lastName')
+        isValid('email')
+        isValid('tel')
+        isValid('country')
     }
     handleSubmit = (e) => {
         e.preventDefault()
 
+        // Validate
+        this.required('firstName')
+
+        // Get data
         const { skills, ...data } = this.state
 
         const formattedSkills = []
@@ -117,11 +113,12 @@ export default class UltimateValidation extends Component {
         }
         data.skills = formattedSkills
 
+        // Transfer data
         console.log(data)
     }
 
     render() {
-        const errors = this.validate()
+        this.validate()
         return (
             <div className="validation-wrapper">
                 <h3 className="validation-title">Ultimate Form</h3>
@@ -132,7 +129,7 @@ export default class UltimateValidation extends Component {
                 >
                     <div className="form-groups">
                         <div className="form-group">
-                            <label htmlFor="firstName">First Name </label>
+                            <label htmlFor="firstName">First Name</label>
                             <input
                                 type="text"
                                 id="firstName"
@@ -143,12 +140,12 @@ export default class UltimateValidation extends Component {
                                 placeholder="First Name"
                             />
                             <small className="form-error">
-                                {errors.firstName}
+                                {this.state.errors.firstName}
                             </small>
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="lastName">Last Name </label>
+                            <label htmlFor="lastName">Last Name</label>
                             <input
                                 type="text"
                                 name="lastName"
@@ -158,12 +155,12 @@ export default class UltimateValidation extends Component {
                                 placeholder="Last Name"
                             />
                             <small className="form-error">
-                                {errors.lastName}
+                                {this.state.errors.lastName}
                             </small>
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="email">Email </label>
+                            <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 name="email"
@@ -172,22 +169,28 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 placeholder="Email"
                             />
-                            <small className="form-error">{errors.email}</small>
+                            <small className="form-error">
+                                {this.state.errors.email}
+                            </small>
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="tel">Telephone </label>
+                            <label htmlFor="tel">Telephone</label>
                             <input
                                 type="tel"
                                 name="tel"
                                 value={this.state.tel}
                                 onChange={this.handleChange}
+                                onBlur={this.handleBlur}
                                 placeholder="Tel"
                             />
+                            <small className="form-error">
+                                {this.state.errors.tel}
+                            </small>
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="dateOfBirth">Date of birth </label>
+                            <label htmlFor="dateOfBirth">Date of birth</label>
                             <input
                                 type="date"
                                 name="dateOfBirth"
@@ -212,7 +215,7 @@ export default class UltimateValidation extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="weight">Weight </label>
+                            <label htmlFor="weight">Weight</label>
                             <input
                                 type="number"
                                 id="weight"
@@ -228,10 +231,14 @@ export default class UltimateValidation extends Component {
                             <select
                                 name="country"
                                 onChange={this.handleChange}
+                                onBlur={this.handleBlur}
                                 id="country"
                             >
                                 {selectOptions}
                             </select>
+                            <small className="form-error">
+                                {this.state.errors.country}
+                            </small>
                         </div>
 
                         <div className="form-group">

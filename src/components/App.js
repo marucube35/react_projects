@@ -67,8 +67,20 @@ export default class App extends React.Component {
             colors: ['#fff', '#000', '#000', '#fff']
         }
         this.patterns = {
-            names: /^[a-zA-Z]{3,12}$/gi,
-            email: /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/gi
+            firstName: /^[a-zA-Z]{3,12}$/gi,
+            lastName: /^[a-zA-Z]{3,12}$/gi,
+            email: /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/gi,
+            tel: /^[0-9]{10,12}$/gi,
+            country: /^[a-zA-Z]+$/gi
+        }
+        this.messages = {
+            firstName:
+                "Name's length must be between 3 and 12 and only characters are accepted.",
+            lastName:
+                "Name's length must be between 3 and 12 and only characters are accepted.",
+            email: 'Email is invalid, valid format: example@domain.com',
+            tel: "Telephone's length must be between 10 and 12 and only numbers are accepted.",
+            country: 'You have not selected the country'
         }
     }
     changeMode = () => {
@@ -95,7 +107,10 @@ export default class App extends React.Component {
                 <ThemeBackgrounds data={this.timeOfDays} />
                 <EventHandlers />
                 <ObjectChasing />
-                <UltimateValidation patterns={this.patterns} />
+                <UltimateValidation
+                    patterns={this.patterns}
+                    messages={this.messages}
+                />
             </div>
         )
     }
