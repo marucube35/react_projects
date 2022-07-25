@@ -39,7 +39,7 @@ export default class UltimateValidation extends Component {
             email: '',
             tel: '',
             dateOfBirth: '',
-            favoriteColor: '',
+            favoriteColor: '#ffffff',
             weight: '',
             country: '',
             gender: '',
@@ -100,15 +100,33 @@ export default class UltimateValidation extends Component {
         else this.setError(name, '')
     }
     isEmpty = (name) => {
-        if (this.state[name] === '') {
+        if (!this.state[name]) {
+            this.setError(name, 'This field can not be empty')
+        }
+
+        if (name === 'skills') {
+            for (const skill in this.state.skills) {
+                if (this.state.skills[skill]) {
+                    this.setError(name, '')
+                    return
+                }
+            }
             this.setError(name, 'This field can not be empty')
         }
     }
     handleSubmit = (e) => {
         e.preventDefault()
 
+        // Validate
+        for (const name in this.state) {
+            console.log(name)
+            setTimeout(() => {
+                this.isEmpty(name)
+            }, 0)
+        }
+
         // Get data
-        const { skills, ...data } = this.state
+        const { skills, errors, ...data } = this.state
 
         // Format data
         const formattedSkills = []
@@ -119,15 +137,8 @@ export default class UltimateValidation extends Component {
         }
         data.skills = formattedSkills
 
-        // Validate
-        for (const name in data) {
-            setTimeout(() => {
-                this.isEmpty(name)
-            }, 0)
-        }
-
         // Transfer data
-        console.log(data)
+        console.log(this.state)
     }
 
     render() {
@@ -331,6 +342,9 @@ export default class UltimateValidation extends Component {
                                 />
                                 <label htmlFor="javascript">JavaScript</label>
                             </div>
+                            <small className="form-error">
+                                {this.state.errors.skills}
+                            </small>
                         </div>
 
                         <div className="form-group">
