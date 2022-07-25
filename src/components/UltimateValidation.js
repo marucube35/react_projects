@@ -39,7 +39,7 @@ export default class UltimateValidation extends Component {
             email: '',
             tel: '',
             dateOfBirth: '',
-            favoriteColor: '#000000',
+            favoriteColor: '',
             weight: '',
             country: '',
             gender: '',
@@ -54,7 +54,10 @@ export default class UltimateValidation extends Component {
                 firstName: false,
                 lastName: false
             },
-            errors: {}
+            errors: {
+                firstName: '',
+                lastName: ''
+            }
         }
     }
     handleChange = (e) => {
@@ -70,7 +73,10 @@ export default class UltimateValidation extends Component {
             this.setState({ [name]: value })
         }
 
-        this.setState({ focused: { ...this.state.focused, [name]: false } })
+        this.setState(
+            { focused: { ...this.state.focused, [name]: false } },
+            () => this.isValid(name)
+        )
     }
     handleBlur = (e) => {
         const { name } = e.target
@@ -91,6 +97,7 @@ export default class UltimateValidation extends Component {
             !this.state[name].match(this.props.patterns[name])
         )
             this.setError(name, this.props.messages[name])
+        else this.setError(name, '')
     }
     isEmpty = (name) => {
         if (this.state[name] === '') {
@@ -111,6 +118,13 @@ export default class UltimateValidation extends Component {
             }
         }
         data.skills = formattedSkills
+
+        // Validate
+        for (const name in data) {
+            setTimeout(() => {
+                this.isEmpty(name)
+            }, 0)
+        }
 
         // Transfer data
         console.log(data)
@@ -196,6 +210,9 @@ export default class UltimateValidation extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Date of Birth"
                             />
+                            <small className="form-error">
+                                {this.state.errors.dateOfBirth}
+                            </small>
                         </div>
 
                         <div className="form-group">
@@ -210,6 +227,9 @@ export default class UltimateValidation extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Favorite Color"
                             />
+                            <small className="form-error">
+                                {this.state.errors.favoriteColor}
+                            </small>
                         </div>
 
                         <div className="form-group">
@@ -222,6 +242,9 @@ export default class UltimateValidation extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Weight in Kg"
                             />
+                            <small className="form-error">
+                                {this.state.errors.weight}
+                            </small>
                         </div>
 
                         <div className="form-group">
@@ -274,6 +297,9 @@ export default class UltimateValidation extends Component {
                                 />
                                 <label htmlFor="other">Other</label>
                             </div>
+                            <small className="form-error">
+                                {this.state.errors.gender}
+                            </small>
                         </div>
 
                         <div className="form-group">
@@ -318,6 +344,9 @@ export default class UltimateValidation extends Component {
                                 rows="10"
                                 placeholder="Write about yourself ..."
                             />
+                            <small className="form-error">
+                                {this.state.errors.bio}
+                            </small>
                         </div>
 
                         <div className="form-group">
