@@ -31,6 +31,7 @@ import '../styles/RandomCountries.css'
 import '../styles/ThemeBackgrounds.css'
 import '../styles/EventHandlers.css'
 import '../styles/ObjectChasing.css'
+import '../styles/UltimateValidation.css'
 
 // Components
 import FETechs from './FETechs'
@@ -45,6 +46,7 @@ import RandomCountries from './RandomCountries'
 import ThemeBackgrounds from './ThemeBackgrounds'
 import EventHandlers from './EventHandlers'
 import ObjectChasing from './ObjectChasing'
+import UltimateValidation from './UltimateValidation'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -89,6 +91,7 @@ export default class App extends React.Component {
                 <ThemeBackgrounds data={this.timeOfDays} />
                 <EventHandlers />
                 <ObjectChasing />
+                <UltimateValidation />
             </div>
         )
     }
