@@ -31,28 +31,31 @@ const selectOptions = options.map(({ value, label }) => (
 ))
 
 export default class UltimateValidation extends Component {
-    state = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        tel: '',
-        dateOfBirth: '',
-        favoriteColor: '#000000',
-        weight: '',
-        country: '',
-        gender: '',
-        file: '',
-        bio: '',
-        skills: {
-            html: false,
-            css: false,
-            javascript: false
-        },
-        focused: {
-            firstName: false,
-            lastName: false
-        },
-        errors: {}
+    constructor(props) {
+        super(props)
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            tel: '',
+            dateOfBirth: '',
+            favoriteColor: '#000000',
+            weight: '',
+            country: '',
+            gender: '',
+            file: '',
+            bio: '',
+            skills: {
+                html: false,
+                css: false,
+                javascript: false
+            },
+            focused: {
+                firstName: false,
+                lastName: false
+            },
+            errors: {}
+        }
     }
     handleChange = (e) => {
         const { name, value, type, checked } = e.target
@@ -71,42 +74,38 @@ export default class UltimateValidation extends Component {
     }
     handleBlur = (e) => {
         const { name } = e.target
+
         this.setState({ focused: { ...this.state.focused, [name]: true } })
     }
-    required(type) {
-        console.log(`Check empty input [${type}]: ${this.state[type]}`)
-        if (!this.state[type])
-            this.setState({ [type]: 'This field can not be empty' })
-    }
-    validate = () => {
+    setError = (type, error) => {
         const state = this.state
-        const { patterns, messages } = this.props
-
-        function isValid(type) {
-            console.log(`Validating [${type}]: ${state[type]}`)
-            if (!state.focused[type] || state[type].match(patterns[type])) {
-                state.errors[type] = ''
-            } else state.errors[type] = messages[type]
+        state.errors[type] = error
+    }
+    isValid = (type) => {
+        if (
+            this.state.focused[type] &&
+            !this.state[type].match(this.props.patterns[type])
+        )
+            this.setError(type, this.props.messages[type])
+    }
+    isEmpty = (type) => {
+        if (this.state[type] === '') {
+            this.setError(type, 'This field can not be empty')
         }
-
-        isValid('firstName')
-        isValid('lastName')
-        isValid('email')
-        isValid('tel')
-        isValid('country')
+    }
+    validate = (types, validator) => {
+        for (const type of types) {
+            validator(type)
+        }
     }
     handleSubmit = (e) => {
         e.preventDefault()
-
-        // Validate
-        this.required('firstName')
 
         // Get data
         const { skills, ...data } = this.state
 
         const formattedSkills = []
         for (const key in skills) {
-            console.log(key)
             if (skills[key]) {
                 formattedSkills.push(key.toUpperCase())
             }
@@ -118,7 +117,10 @@ export default class UltimateValidation extends Component {
     }
 
     render() {
-        this.validate()
+        this.validate(
+            ['firstName', 'lastName', 'email', 'tel', 'country'],
+            this.isValid
+        )
         return (
             <div className="validation-wrapper">
                 <h3 className="validation-title">Ultimate Form</h3>
