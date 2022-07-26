@@ -55,21 +55,3 @@
 .random-country-info {
     font-weight: 400;
 }
-.random-country-button {
-    margin: 28px 0;
-    font-size: 2.2rem;
-    background-color: #60dbfc;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none;
-}
-.random-country-button:hover {
-    cursor: pointer;
-    opacity: 0.8;
-}

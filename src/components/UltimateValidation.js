@@ -373,7 +373,7 @@ export default class UltimateValidation extends Component {
                             />
                         </div>
                     </div>
-                    <button type="submit" className="form-button">
+                    <button type="submit" className="button">
                         Submit
                     </button>
                 </form>

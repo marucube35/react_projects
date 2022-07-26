@@ -75,7 +75,7 @@ export default class RandomCountries extends React.Component {
                 <button
                     onClick={this.changeCountry}
                     type="button"
-                    className="random-country-button"
+                    className="button"
                 >
                     Select Country
                 </button>

@@ -1,3 +1,6 @@
+// React
+import React from 'react'
+
 // Data
 import { tenHighestPopulation } from '../data/tenHighestPopulation'
 

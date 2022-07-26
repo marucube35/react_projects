@@ -71,17 +71,3 @@
     width: 100%;
     display: inline-block;
 }
-.form-button {
-    padding: 8px 24px;
-    background-color: #61dbfc;
-    color: #fff;
-    border-radius: 4px;
-    outline: none;
-    font-size: 3rem;
-    margin-top: 32px;
-    border: none;
-}
-.form-button:hover {
-    cursor: pointer;
-    opacity: 0.8;
-}
