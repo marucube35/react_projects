@@ -1,5 +1,6 @@
 // index.js
 import React, { Component } from 'react'
+import validator from 'validator'
 
 const options = [
     {
@@ -92,50 +93,48 @@ export default class UltimateValidation extends Component {
         })
     }
     isValid = (name) => {
-        if (
-            this.state.focused[name] &&
-            !this.state[name].match(this.props.patterns[name])
-        )
-            this.setError(name, this.props.messages[name])
-        else this.setError(name, '')
+        const { validators, messages } = this.props
+
+        if (this.state.focused[name]) {
+            const rules = validators[name]
+
+            for (const rule of rules) {
+                const { func, options } = rule
+                if (!validator[func](this.state[name], options))
+                    this.setError(name, messages[name])
+            }
+        } else this.setError(name, '')
     }
     isEmpty = (name) => {
-        if (!this.state[name]) {
-            this.setError(name, 'This field can not be empty')
-        }
-
-        if (name === 'skills') {
-            for (const skill in this.state.skills) {
-                if (this.state.skills[skill]) {
-                    this.setError(name, '')
-                    return
-                }
-            }
+        if (validator.isEmpty(this.state[name])) {
             this.setError(name, 'This field can not be empty')
         }
     }
-    handleSubmit = (e) => {
-        e.preventDefault()
-
-        // Validate
-        for (const name in this.state) {
-            console.log(name)
-            setTimeout(() => {
-                this.isEmpty(name)
-            }, 0)
-        }
-
-        // Get data
-        const { skills, errors, ...data } = this.state
-
-        // Format data
+    formatSkills = (skills) => {
         const formattedSkills = []
         for (const key in skills) {
             if (skills[key]) {
                 formattedSkills.push(key.toUpperCase())
             }
         }
-        data.skills = formattedSkills
+        return formattedSkills
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        // Get data
+        const { skills, focused, errors, ...data } = this.state
+
+        // Validate
+        for (const name in data) {
+            setTimeout(() => {
+                this.isEmpty(name)
+            }, 0)
+        }
+
+        // Format data
+
+        data.skills = this.formatSkills(skills)
 
         // Transfer data
         console.log(this.state)
@@ -251,6 +250,7 @@ export default class UltimateValidation extends Component {
                                 name="weight"
                                 value={this.state.weight}
                                 onChange={this.handleChange}
+                                onBlur={this.handleBlur}
                                 placeholder="Weight in Kg"
                             />
                             <small className="form-error">

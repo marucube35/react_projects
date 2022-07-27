@@ -66,12 +66,19 @@ export default class App extends React.Component {
             buttonColors: ['#ffb4b4', '#fff9ca', '#ffdeb4', '#b2a4ff'],
             colors: ['#fff', '#000', '#000', '#fff']
         }
-        this.patterns = {
-            firstName: /^[a-zA-Z]{3,12}$/gi,
-            lastName: /^[a-zA-Z]{3,12}$/gi,
-            email: /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/gi,
-            tel: /^[0-9]{10,12}$/gi,
-            country: /^[a-zA-Z]+$/gi
+        this.validators = {
+            firstName: [
+                { func: 'isAlpha' },
+                { func: 'isLength', options: { min: 3, max: 12 } }
+            ],
+            lastName: [
+                { func: 'isAlpha' },
+                { func: 'isLength', options: { min: 3, max: 12 } }
+            ],
+            email: [{ func: 'isEmail' }],
+            tel: [{ func: 'isMobilePhone' }],
+            weight: [{ func: 'isAlphanumeric' }],
+            country: [{ func: 'isAlpha' }]
         }
         this.messages = {
             firstName:
@@ -79,8 +86,9 @@ export default class App extends React.Component {
             lastName:
                 "Name's length must be between 3 and 12 and only characters are accepted.",
             email: 'Email is invalid, valid format: example@domain.com',
-            tel: "Telephone's length must be between 10 and 12 and only numbers are accepted.",
-            country: 'You have not selected the country'
+            tel: "Telephone's length must be between 6 and 12 and only numbers are accepted.",
+            weight: 'Weight must be positive number.',
+            country: 'You have not selected the country.'
         }
     }
     changeMode = () => {
@@ -108,7 +116,7 @@ export default class App extends React.Component {
                 <EventHandlers />
                 <ObjectChasing />
                 <UltimateValidation
-                    patterns={this.patterns}
+                    validators={this.validators}
                     messages={this.messages}
                 />
             </div>
