@@ -1,2 +1,2 @@
-# Mini ReactJS projects
+# Mini React projects
 Deployment: 
