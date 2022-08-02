@@ -1,2 +1,2 @@
 # Mini React projects
-Deployment: 
+Deployment: https://marucube35.github.io/react_projects/
