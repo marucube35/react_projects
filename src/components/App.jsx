@@ -1,5 +1,14 @@
 // React
 import React from 'react'
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    Redirect,
+    Prompt,
+    withRouter
+} from 'react-router-dom'
 
 // Images
 import html from '../assets/images/html.png'
@@ -18,7 +27,7 @@ import evening from '../assets/images/evening.jpg'
 import night from '../assets/images/night.jpg'
 
 // CSS
-import '../styles/main.css'
+import '../styles/main.scss'
 import '../styles/FETechs.css'
 import '../styles/SubcribeForm.css'
 import '../styles/UserCard.css'
@@ -47,6 +56,11 @@ import ThemeBackgrounds from './ThemeBackgrounds'
 import EventHandlers from './EventHandlers'
 import ObjectChasing from './ObjectChasing'
 import UltimateValidation from './UltimateValidation'
+import Navbar from './Navbar'
+
+function NotFound() {
+    return <div className="wrapper">The page you looking for is not found</div>
+}
 
 export default class App extends React.Component {
     constructor(props) {
@@ -91,35 +105,91 @@ export default class App extends React.Component {
             country: 'You have not selected the country.'
         }
     }
+
     changeMode = () => {
         this.setState({
             mode: this.state.mode === 'light' ? 'dark' : 'light'
         })
     }
+
     render() {
         return (
-            <div className={`container ${this.state.mode}-mode`}>
-                <FETechs logos={[html, css, js, react]} />
-                <SubcribeForm />
-                <UserCard avatar={avatar} check={check} />
-                <RGBColorGenerator />
-                <NumberGenerator quantity={32} />
-                <HexColorGenerator quantity={32} />
-                <WorldPopulation />
-                <DarkModeButton
-                    state={this.state}
-                    changeMode={this.changeMode}
-                />
-                <RandomCountries />
-                <ThemeBackgrounds data={this.seasons} />
-                <ThemeBackgrounds data={this.timeOfDays} />
-                <EventHandlers />
-                <ObjectChasing />
-                <UltimateValidation
-                    validators={this.validators}
-                    messages={this.messages}
-                />
-            </div>
+            <Router>
+                <div className={`App ${this.state.mode}-mode`}>
+                    <div className="sidebar">
+                        <Navbar />
+                        <DarkModeButton
+                            state={this.state}
+                            changeMode={this.changeMode}
+                        />
+                    </div>
+                    <div className="pages">
+                        <Routes>
+                            <Route path="*" element={<NotFound />} />
+                            <Route
+                                path="fe-techs"
+                                element={
+                                    <FETechs logos={[html, css, js, react]} />
+                                }
+                            />
+                            <Route
+                                path="subcribe-form"
+                                element={<SubcribeForm />}
+                            />
+                            <Route
+                                path="user-card"
+                                element={
+                                    <UserCard avatar={avatar} check={check} />
+                                }
+                            />
+                            <Route
+                                path="rgb-generator"
+                                element={<RGBColorGenerator />}
+                            />
+                            <Route
+                                path="number-generator"
+                                element={<NumberGenerator quantity={32} />}
+                            />
+                            <Route
+                                path="hex-generator"
+                                element={<HexColorGenerator quantity={32} />}
+                            />
+                            <Route
+                                path="world-population"
+                                element={<WorldPopulation />}
+                            />
+                            <Route
+                                path="random-countries"
+                                element={<RandomCountries />}
+                            />
+                            <Route
+                                // TODO: Add day time themes to the app
+                                path="theme-backgrounds"
+                                element={
+                                    <ThemeBackgrounds data={this.seasons} />
+                                }
+                            />
+                            <Route
+                                path="event-handlers"
+                                element={<EventHandlers />}
+                            />
+                            <Route
+                                path="object-chasing"
+                                element={<ObjectChasing />}
+                            />
+                            <Route
+                                path="ultimate-validation"
+                                element={
+                                    <UltimateValidation
+                                        validators={this.validators}
+                                        messages={this.messages}
+                                    />
+                                }
+                            />
+                        </Routes>
+                    </div>
+                </div>
+            </Router>
         )
     }
 }

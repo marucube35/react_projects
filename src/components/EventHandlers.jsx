@@ -79,7 +79,7 @@ export default class EventHandlers extends Component {
                         onChange={this.handleChange}
                         placeholder="Key handler"
                     />
-                    <input className="button-handler" type="submit"></input>
+                    <input className="button-handler" type="submit" value="Submit"></input>
                 </form>
                 <div
                     onMouseEnter={this.handleMouseEnter}
