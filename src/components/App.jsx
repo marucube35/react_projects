@@ -125,6 +125,18 @@ export default class App extends React.Component {
                     </div>
                     <div className="pages">
                         <Routes>
+                            <Route
+                                index
+                                element={
+                                    <UserCard avatar={avatar} check={check} />
+                                }
+                            />
+                            <Route
+                                path=""
+                                element={
+                                    <UserCard avatar={avatar} check={check} />
+                                }
+                            />
                             <Route path="*" element={<NotFound />} />
                             <Route
                                 path="fe-techs"
