@@ -10,3 +10,27 @@
     font-size: $font-size;
     font-weight: $font-weight;
 }
+
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin borderless {
+    border: none;
+    outline: none;
+}
+
+@mixin unselectable {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none;
+}
+
+@mixin hovered {
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+    }
+}

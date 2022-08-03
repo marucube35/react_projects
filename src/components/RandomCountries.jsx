@@ -1,55 +1,38 @@
-// React
-import React from 'react'
+import { Component } from 'react'
+import capitalize from '../utils/capitalize'
+import commify from '../utils/commify'
+import '../styles/random_countries.scss'
 
-// Data
-import { countriesData as countries } from '../data/countries_data'
-
-export default class RandomCountries extends React.Component {
+class RandomCountries extends Component {
     constructor(props) {
         super(props)
         this.state = {
             currentCountry: 0
         }
-        this.countries = countries
+        this.countries = props.countries
     }
-    capitalize = (str) => {
-        return str.at(0).toUpperCase() + str.slice(1)
-    }
-    insert = (str, index, value) => {
-        return (
-            str.substring(0, index) + value + str.substring(index, str.length)
-        )
-    }
-    formatPopulation = (population) => {
-        let str = population.toString()
 
-        for (let i = str.length - 3; i >= 0; i -= 3) {
-            if (i !== 0) str = this.insert(str, i, ',')
-        }
-
-        return str
-    }
-    changeCountry = () => {
+    randomCountry = () => {
         const length = this.countries.length
         let randomIndex = Math.round(Math.random() * length) % length
 
         this.setState({ currentCountry: randomIndex })
     }
-
     renderInfos = (infos) => {
         const infosElement = []
+
         for (const info in infos) {
-            if (info === 'population')
-                infos[info] = this.formatPopulation(infos[info])
+            if (info === 'population') infos[info] = commify(infos[info])
             if (info === 'languages') infos[info] = infos[info].join(', ')
 
             infosElement.push(
-                <p key={info} className={`random-country-title`}>
-                    {this.capitalize(info) + ': '}
-                    <span className={`random-country-info`}>{infos[info]}</span>
+                <p key={info}>
+                    {capitalize(info) + ': '}
+                    <span>{infos[info]}</span>
                 </p>
             )
         }
+
         return infosElement
     }
 
@@ -61,19 +44,15 @@ export default class RandomCountries extends React.Component {
             <div className="random-country-wrapper">
                 <div className="random-country">
                     <div className="random-country-header">
-                        <img
-                            src={flag}
-                            alt="Country Flag"
-                            className="random-country-flag"
-                        ></img>
-                        <h1 className="random-country-name">{name}</h1>
+                        <img src={flag} alt="Country Flag"></img>
+                        <h1>{name}</h1>
                     </div>
                     <div className="random-country-body">
                         {this.renderInfos(rest)}
                     </div>
                 </div>
                 <button
-                    onClick={this.changeCountry}
+                    onClick={this.randomCountry}
                     type="button"
                     className="button"
                 >
@@ -83,3 +62,5 @@ export default class RandomCountries extends React.Component {
         )
     }
 }
+
+export default RandomCountries

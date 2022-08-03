@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Data
 import fe_techs from '../data/fe_techs'
+import user_infos from '../data/user_infos'
+import tenHighestPopulation from '../data/tenHighestPopulation'
+import countries_data from '../data/countries_data'
 
 // Images
-import avatar from '../assets/images/avatar.png'
-import check from '../assets/images/check.png'
 import spring from '../assets/images/spring.jpg'
 import summer from '../assets/images/summer.jpg'
 import autumn from '../assets/images/autumn.jpg'
@@ -19,29 +20,15 @@ import night from '../assets/images/night.jpg'
 
 // CSS
 import '../styles/main.scss'
-import '../styles/FETechs.scss'
-import '../styles/SubcribeForm.scss'
-import '../styles/UserCard.scss'
-import '../styles/RGBColorGenerator.scss'
-import '../styles/NumberGenerator.scss'
-import '../styles/HexColorGenerator.scss'
-import '../styles/WorldPopulation.scss'
-import '../styles/DarkModeButton.scss'
-import '../styles/RandomCountries.scss'
-import '../styles/ThemeBackgrounds.scss'
-import '../styles/EventHandlers.scss'
-import '../styles/ObjectChasing.scss'
-import '../styles/UltimateValidation.scss'
 
 // Components
-import FETechs from './FETechs'
+import FrontEndTechs from './FETechs'
 import SubcribeForm from './SubcribeForm'
 import UserCard from './UserCard'
-import RGBColorGenerator from './RGBColorGenerator'
+import RGBGenerator from './RGBGenerator'
 import NumberGenerator from './NumberGenerator'
 import HexColorGenerator from './HexColorGenerator'
 import WorldPopulation from './WorldPopulation'
-import DarkModeButton from './DarkModeButton'
 import RandomCountries from './RandomCountries'
 import ThemeBackgrounds from './ThemeBackgrounds'
 import EventHandlers from './EventHandlers'
@@ -114,24 +101,12 @@ class App extends Component {
                             changeMode={this.changeMode}
                         />
                     </div>
+
                     <div className="pages">
                         <Routes>
                             <Route
-                                index
-                                element={
-                                    <UserCard avatar={avatar} check={check} />
-                                }
-                            />
-                            <Route
-                                path=""
-                                element={
-                                    <UserCard avatar={avatar} check={check} />
-                                }
-                            />
-                            <Route path="*" element={<NotFound />} />
-                            <Route
                                 path="fe-techs"
-                                element={<FETechs fe_techs={fe_techs} />}
+                                element={<FrontEndTechs fe_techs={fe_techs} />}
                             />
                             <Route
                                 path="subcribe-form"
@@ -139,29 +114,35 @@ class App extends Component {
                             />
                             <Route
                                 path="user-card"
-                                element={
-                                    <UserCard avatar={avatar} check={check} />
-                                }
+                                element={<UserCard user_infos={user_infos} />}
                             />
                             <Route
                                 path="rgb-generator"
-                                element={<RGBColorGenerator />}
-                            />
-                            <Route
-                                path="number-generator"
-                                element={<NumberGenerator quantity={32} />}
+                                element={<RGBGenerator quantity={5} />}
                             />
                             <Route
                                 path="hex-generator"
-                                element={<HexColorGenerator quantity={32} />}
+                                element={<HexColorGenerator quantity={35} />}
+                            />
+                            <Route
+                                path="number-generator"
+                                element={<NumberGenerator quantity={36} />}
                             />
                             <Route
                                 path="world-population"
-                                element={<WorldPopulation />}
+                                element={
+                                    <WorldPopulation
+                                        countries={tenHighestPopulation}
+                                    />
+                                }
                             />
                             <Route
                                 path="random-countries"
-                                element={<RandomCountries />}
+                                element={
+                                    <RandomCountries
+                                        countries={countries_data}
+                                    />
+                                }
                             />
                             <Route
                                 // TODO: Add day time themes to the app
@@ -185,6 +166,15 @@ class App extends Component {
                                     />
                                 }
                             />
+                            <Route
+                                index
+                                element={<UserCard user_infos={user_infos} />}
+                            />
+                            <Route
+                                path=""
+                                element={<UserCard user_infos={user_infos} />}
+                            />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </div>
                 </div>

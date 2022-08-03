@@ -25,44 +25,55 @@ body,
     @include flex(row, space-between, center);
     padding: 20px 30px;
     height: 100%;
-}
-.app.dark-mode {
-    background-color: #000;
-}
 
-.sidebar {
-    @include flex(column, flex-start, center);
-    height: 100%;
+    .sidebar {
+        @include flex(column, flex-start, center);
+        height: 100%;
 
-    .navigation {
-        font-size: 2rem;
-        flex: 0 0 15%;
-        padding: 10px 16px;
-        margin-bottom: 40px;
-        border-radius: 16px;
-        list-style-type: none;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .navigation {
+            font-size: 2rem;
+            flex: 0 0 15%;
+            padding: 10px 16px;
+            margin-bottom: 40px;
+            border-radius: 16px;
+            list-style-type: none;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-        a {
-            color: #5800ff;
+            a {
+                color: #5800ff;
+            }
+            a:hover {
+                color: #0096ff;
+            }
         }
-        a:hover {
-            color: #0096ff;
+    }
+
+    .pages {
+        @include flex(row, center, flex-start);
+        width: 80%;
+        height: 100%;
+        margin: 0 12px;
+
+        div[class*='wrapper'] {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            @include hovered;
+            @include borderless;
+            @include unselectable;
+            padding: 8px 24px;
+            border-radius: 4px;
+            margin-top: 32px;
+            font-size: 3rem;
+            color: #fff;
+            background-color: #000;
         }
     }
 }
-
-.pages {
-    @include flex(row, center, flex-start);
-    width: 80%;
-    height: 100%;
-    margin: 0 12px;
-}
-
-div[class*='wrapper'] {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+.app.dark-mode {
+    background-color: #000;
 }

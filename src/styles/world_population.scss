@@ -1,0 +1,42 @@
+@import './mixins.scss';
+
+.world-population-wrapper {
+    @include flex(column, center, center);
+    padding: 12px 36px;
+    background-color: #fff;
+
+    h1 {
+        @include font(6rem, 600);
+        margin-bottom: 16px;
+    }
+
+    .countries {
+        margin: 36px 0;
+        width: 100%;
+
+        .country {
+            @include flex(row, space-around, center);
+            @include font(2.2rem, 600);
+            margin: 8px 0;
+
+            p {
+                text-transform: uppercase;
+                min-width: 10%;
+            }
+            div {
+                width: 74%;
+
+                div {
+                    background-color: #ffa500;
+                    height: 40px;
+                    border-radius: 4px;
+                }
+            }
+
+            span {
+                margin-left: 12px;
+                min-width: 12%;
+            }
+        }
+    }
+}

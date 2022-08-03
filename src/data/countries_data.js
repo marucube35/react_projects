@@ -1,4 +1,4 @@
-export const countriesData = [
+const countries_data = [
     {
         name: 'Afghanistan',
         capital: 'Kabul',
@@ -2011,3 +2011,4 @@ export const countriesData = [
         currency: 'Botswana pula'
     }
 ]
+export default countries_data

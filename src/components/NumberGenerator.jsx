@@ -1,38 +1,41 @@
-// Functions
+import { Component } from 'react'
 import isPrime from '../utils/isPrime'
+import '../styles/number_generator.scss'
 
-export default function NumberGenerator({ quantity }) {
-    const generateNumber = (quantity) => {
+class NumberGenerator extends Component {
+    generateNumber(quantity) {
         const numbers = []
 
         for (let i = 0; i <= quantity - 1; i++) numbers.push(i)
         return numbers
     }
 
-    const generateColor = (number) => {
-        let className = 'number'
-        if (number % 2 === 0) className += ' number--green'
-        else className += ' number--yellow'
-        if (isPrime(number)) className += ' number--red'
+    generateColor(number) {
+        let className = ''
+
+        if (number % 2 === 0) className += ' green'
+        else className += ' yellow'
+        if (isPrime(number)) className += ' red'
+
         return className
     }
 
-    const Number = ({ numbers }) => {
-        return numbers.map((number) => (
-            <div className={generateColor(number)} key={number}>
-                {number}
+    render() {
+        return (
+            <div className="numbers-wrapper">
+                <div className='numbers'>
+                    {this.generateNumber(this.props.quantity).map((number) => (
+                        <div
+                            className={this.generateColor(number)}
+                            key={number}
+                        >
+                            {number}
+                        </div>
+                    ))}
+                </div>
             </div>
-        ))
+        )
     }
-    const numbers = generateNumber(quantity)
-    
-    return (
-        <div className="numbers-wrapper">
-            <h1 className="numbers-title">30 Days of React</h1>
-            <p className="numbers-subtitle">Number Generator</p>
-            <div className="numbers">
-                <Number numbers={numbers} />
-            </div>
-        </div>
-    )
 }
+
+export default NumberGenerator

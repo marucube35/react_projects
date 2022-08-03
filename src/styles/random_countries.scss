@@ -1,0 +1,52 @@
+@import './mixins.scss';
+
+.random-country-wrapper {
+    @include flex(column, center, center);
+    background-color: #fff;
+    padding: 36px;
+
+    .random-country {
+        @include flex(column, flex-start, flex-start);
+        width: 34%;
+        min-height: 500px;
+        padding: 24px 36px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
+        .random-country-header {
+            @include flex(column, center, center);
+            @include size(100%, 300px);
+
+            img {
+                @include size(50%);
+                object-fit: contain;
+                margin: 12px;
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            }
+            h1 {
+                @include font(2.4rem, 530);
+                height: 24%;
+                color: #4d4b4b;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+
+        .random-country-body {
+            @include flex(column, flex-start, flex-start);
+            flex: 1;
+
+            p {
+                @include font(2rem, 600);
+                color: #4d4b4b;
+            }
+            span {
+                font-weight: 400;
+            }
+        }
+    }
+
+    .button {
+        background-color: blue;
+    }
+}

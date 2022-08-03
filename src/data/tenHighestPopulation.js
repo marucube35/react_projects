@@ -1,4 +1,4 @@
-export const tenHighestPopulation = [
+const tenHighestPopulation = [
     { name: 'World', population: 7693165599 },
     { name: 'China', population: 1377422166 },
     { name: 'India', population: 1295210000 },
@@ -9,5 +9,7 @@ export const tenHighestPopulation = [
     { name: 'Nigeria', population: 186988000 },
     { name: 'Bangladesh', population: 161006790 },
     { name: 'Russian Federation', population: 146599183 },
-    { name: 'Japan', population: 126960000 },
-  ]
+    { name: 'Japan', population: 126960000 }
+]
+
+export default tenHighestPopulation

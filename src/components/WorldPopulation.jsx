@@ -1,69 +1,54 @@
-// React
-import React from 'react'
+import { Component } from 'react'
+import commify from '../utils/commify'
+import '../styles/world_population.scss'
+class CountriesVisualization extends Component {
+    constructor(props) {
+        super(props)
 
-// Data
-import { tenHighestPopulation } from '../data/tenHighestPopulation'
-
-// Country Visualization
-const CountryVisualization = ({ data: { name, population } }) => {
-    const WORLD_POPULATION = tenHighestPopulation[0].population
-    const insert = (str, index, value) => {
-        return (
-            str.substring(0, index) + value + str.substring(index, str.length)
-        )
+        this.countries = props.countries
     }
 
-    const formatPopulation = (population) => {
-        let str = population.toString()
-
-        for (let i = str.length - 3; i >= 0; i -= 3) {
-            if (i !== 0) str = insert(str, i, ',')
-        }
-
-        return str
+    renameCountry(name) {
+        if (name === 'United States of America') return 'USA'
+        if (name === 'Russian Federation') return 'Russia'
+        else return name
     }
 
-    const visualize = (population, world) => {
+    visualize(population, world) {
         const proportion = population / world
-        const width = proportion * 100 + '%'
+        const width = Math.round(proportion * 100) + '%'
         const style = { width }
         return style
     }
 
-    if (name === 'United States of America') name = 'USA'
-    if (name === 'Russian Federation') name = 'Russia'
+    render() {
+        const worldPopulation = this.countries[0].population
 
-    return (
-        <div className="world-country">
-            <p className="world-name">{name}</p>
-            <div className="world-bar">
-                <div
-                    style={visualize(population, WORLD_POPULATION)}
-                    className="world-visualization"
-                ></div>
+        return this.countries.map(({ name, population }, index) => (
+            <div key={index} className="country">
+                <p>{this.renameCountry(name)}</p>
+                <div>
+                    <div
+                        style={this.visualize(population, worldPopulation)}
+                    ></div>
+                </div>
+                <span>{commify(population)}</span>
             </div>
-            <p className="world-population">{formatPopulation(population)}</p>
-        </div>
-    )
+        ))
+    }
 }
 
-// Countries Visualization
-const CountriesVisualization = ({ countries }) => {
-    return countries.map((country) => (
-        <CountryVisualization key={country.name} data={country} />
-    ))
-}
-
-// World population
-export default function WorldPopulation() {
-    return (
-        <div className="world-wrapper">
-            <h1 className="world-project">30 Days of React</h1>
-            <p className="world-title">World population</p>
-            <p className="world-subtitle">Ten most populated countries</p>
-            <div className="world-countries">
-                <CountriesVisualization countries={tenHighestPopulation} />
+class WorldPopulation extends Component {
+    render() {
+        return (
+            <div className="world-population-wrapper">
+                <h1>Ten most populated countries</h1>
+                <div className="countries">
+                    <CountriesVisualization countries={this.props.countries} />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
+
+export default WorldPopulation

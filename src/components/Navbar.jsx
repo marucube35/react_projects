@@ -22,12 +22,12 @@ class Navbar extends Component {
                         <Link to="rgb-generator">RGB Color Generator</Link>
                     </li>
                     <li>
-                        <Link to="number-generator">Number Generator</Link>
-                    </li>
-                    <li>
                         <Link to="hex-generator">
                             Hexadecimal Color Generator
                         </Link>
+                    </li>
+                    <li>
+                        <Link to="number-generator">Number Generator</Link>
                     </li>
                     <li>
                         <Link to="world-population">World Population</Link>
