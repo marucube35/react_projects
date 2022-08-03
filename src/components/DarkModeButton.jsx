@@ -1,16 +1,16 @@
 // React
-import React from 'react'
+import { React, Component } from 'react'
 
-export default class DarkModeButton extends React.Component {
+class DarkModeButton extends Component {
     render() {
-        const { mode } = this.props.state
-        const changeMode = this.props.changeMode
+        const { mode, changeMode } = this.props
+
         return (
-            <div className={`dark-mode-wrapper ${mode}-mode`}>
-                <div onClick={changeMode} className="dark-mode-button">
-                    {mode} Mode
-                </div>
-            </div>
+            <button onClick={changeMode} className="wrapper dark-mode-button" type="button">
+                {mode} Mode
+            </button>
         )
     }
 }
+
+export default DarkModeButton

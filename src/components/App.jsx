@@ -1,20 +1,11 @@
 // React
-import React from 'react'
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
-    Redirect,
-    Prompt,
-    withRouter
-} from 'react-router-dom'
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+// Data
+import fe_techs from '../data/fe_techs'
 
 // Images
-import html from '../assets/images/html.png'
-import css from '../assets/images/css.png'
-import js from '../assets/images/js.png'
-import react from '../assets/images/react.png'
 import avatar from '../assets/images/avatar.png'
 import check from '../assets/images/check.png'
 import spring from '../assets/images/spring.jpg'
@@ -28,19 +19,19 @@ import night from '../assets/images/night.jpg'
 
 // CSS
 import '../styles/main.scss'
-import '../styles/FETechs.css'
-import '../styles/SubcribeForm.css'
-import '../styles/UserCard.css'
-import '../styles/RGBColorGenerator.css'
-import '../styles/NumberGenerator.css'
-import '../styles/HexColorGenerator.css'
-import '../styles/WorldPopulation.css'
-import '../styles/DarkModeButton.css'
-import '../styles/RandomCountries.css'
-import '../styles/ThemeBackgrounds.css'
-import '../styles/EventHandlers.css'
-import '../styles/ObjectChasing.css'
-import '../styles/UltimateValidation.css'
+import '../styles/FETechs.scss'
+import '../styles/SubcribeForm.scss'
+import '../styles/UserCard.scss'
+import '../styles/RGBColorGenerator.scss'
+import '../styles/NumberGenerator.scss'
+import '../styles/HexColorGenerator.scss'
+import '../styles/WorldPopulation.scss'
+import '../styles/DarkModeButton.scss'
+import '../styles/RandomCountries.scss'
+import '../styles/ThemeBackgrounds.scss'
+import '../styles/EventHandlers.scss'
+import '../styles/ObjectChasing.scss'
+import '../styles/UltimateValidation.scss'
 
 // Components
 import FETechs from './FETechs'
@@ -62,47 +53,48 @@ function NotFound() {
     return <div className="wrapper">The page you looking for is not found</div>
 }
 
-export default class App extends React.Component {
+const seasons = {
+    themes: ['Spring', 'Summer', 'Autumn', 'Winter'],
+    backgrounds: [spring, summer, autumn, winter],
+    buttonColors: ['#e55e75', '#fbf88d', '#b61a25', '#218ec9'],
+    colors: ['#fff', '#000', '#fff', '#fff']
+}
+const timeOfDays = {
+    themes: ['Morning', 'Noon', 'Evening', 'Night'],
+    backgrounds: [morning, noon, evening, night],
+    buttonColors: ['#ffb4b4', '#fff9ca', '#ffdeb4', '#b2a4ff'],
+    colors: ['#fff', '#000', '#000', '#fff']
+}
+const validators = {
+    firstName: [
+        { func: 'isAlpha' },
+        { func: 'isLength', options: { min: 3, max: 12 } }
+    ],
+    lastName: [
+        { func: 'isAlpha' },
+        { func: 'isLength', options: { min: 3, max: 12 } }
+    ],
+    email: [{ func: 'isEmail' }],
+    tel: [{ func: 'isMobilePhone' }],
+    weight: [{ func: 'isAlphanumeric' }],
+    country: [{ func: 'isAlpha' }]
+}
+const messages = {
+    firstName:
+        "Name's length must be between 3 and 12 and only characters are accepted.",
+    lastName:
+        "Name's length must be between 3 and 12 and only characters are accepted.",
+    email: 'Email is invalid, valid format: example@domain.com',
+    tel: "Telephone's length must be between 6 and 12 and only numbers are accepted.",
+    weight: 'Weight must be positive number.',
+    country: 'You have not selected the country.'
+}
+
+class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
             mode: 'light'
-        }
-        this.seasons = {
-            themes: ['Spring', 'Summer', 'Autumn', 'Winter'],
-            backgrounds: [spring, summer, autumn, winter],
-            buttonColors: ['#e55e75', '#fbf88d', '#b61a25', '#218ec9'],
-            colors: ['#fff', '#000', '#fff', '#fff']
-        }
-        this.timeOfDays = {
-            themes: ['Morning', 'Noon', 'Evening', 'Night'],
-            backgrounds: [morning, noon, evening, night],
-            buttonColors: ['#ffb4b4', '#fff9ca', '#ffdeb4', '#b2a4ff'],
-            colors: ['#fff', '#000', '#000', '#fff']
-        }
-        this.validators = {
-            firstName: [
-                { func: 'isAlpha' },
-                { func: 'isLength', options: { min: 3, max: 12 } }
-            ],
-            lastName: [
-                { func: 'isAlpha' },
-                { func: 'isLength', options: { min: 3, max: 12 } }
-            ],
-            email: [{ func: 'isEmail' }],
-            tel: [{ func: 'isMobilePhone' }],
-            weight: [{ func: 'isAlphanumeric' }],
-            country: [{ func: 'isAlpha' }]
-        }
-        this.messages = {
-            firstName:
-                "Name's length must be between 3 and 12 and only characters are accepted.",
-            lastName:
-                "Name's length must be between 3 and 12 and only characters are accepted.",
-            email: 'Email is invalid, valid format: example@domain.com',
-            tel: "Telephone's length must be between 6 and 12 and only numbers are accepted.",
-            weight: 'Weight must be positive number.',
-            country: 'You have not selected the country.'
         }
     }
 
@@ -115,11 +107,10 @@ export default class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className={`App ${this.state.mode}-mode`}>
+                <div className={`app ${this.state.mode}-mode`}>
                     <div className="sidebar">
-                        <Navbar />
-                        <DarkModeButton
-                            state={this.state}
+                        <Navbar
+                            mode={this.state.mode}
                             changeMode={this.changeMode}
                         />
                     </div>
@@ -140,9 +131,7 @@ export default class App extends React.Component {
                             <Route path="*" element={<NotFound />} />
                             <Route
                                 path="fe-techs"
-                                element={
-                                    <FETechs logos={[html, css, js, react]} />
-                                }
+                                element={<FETechs fe_techs={fe_techs} />}
                             />
                             <Route
                                 path="subcribe-form"
@@ -177,9 +166,7 @@ export default class App extends React.Component {
                             <Route
                                 // TODO: Add day time themes to the app
                                 path="theme-backgrounds"
-                                element={
-                                    <ThemeBackgrounds data={this.seasons} />
-                                }
+                                element={<ThemeBackgrounds data={seasons} />}
                             />
                             <Route
                                 path="event-handlers"
@@ -193,8 +180,8 @@ export default class App extends React.Component {
                                 path="ultimate-validation"
                                 element={
                                     <UltimateValidation
-                                        validators={this.validators}
-                                        messages={this.messages}
+                                        validators={validators}
+                                        messages={messages}
                                     />
                                 }
                             />
@@ -205,3 +192,5 @@ export default class App extends React.Component {
         )
     }
 }
+
+export default App
