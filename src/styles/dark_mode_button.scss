@@ -1,0 +1,20 @@
+@import './mixins.scss';
+
+.dark-mode-wrapper {
+    @include flex(row, center, center);
+    @include unselectable;
+    @include borderless;
+    @include hover-scale;
+    width: 100%;
+    padding: 36px;
+    border-radius: 16px;
+    font-size: 3rem;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+    text-transform: uppercase;
+    background-color: #fff;
+}
+
+.dark-mode-wrapper.dark-mode .dark-mode-button {
+    color: #fff;
+    background-color: #000;
+}

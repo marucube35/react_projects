@@ -114,10 +114,7 @@ class App extends Component {
                                 path="ultimate-validation"
                                 element={<UltimateValidation />}
                             />
-                            <Route
-                                index
-                                element={<UserCard user_infos={user_infos} />}
-                            />
+
                             <Route
                                 path=""
                                 element={<UserCard user_infos={user_infos} />}
