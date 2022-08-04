@@ -55,16 +55,25 @@ a {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .button {
-            @include hover-blur;
-            @include borderless;
-            @include unselectable;
-            padding: 12px 24px;
-            border-radius: 4px;
-            margin-top: 32px;
-            font-size: 3rem;
-            color: #fff;
+        .not-found-wrapper {
+            @include flex(row, center, center);
+            text-align: center;
+            padding: 24px;
+            height: 588px;
+            font-size: 4rem;
+            background-color: #fff;
         }
+    }
+
+    .button {
+        @include hover-blur;
+        @include borderless;
+        @include unselectable;
+        padding: 12px 24px;
+        border-radius: 4px;
+        margin-top: 32px;
+        font-size: 3rem;
+        color: #fff;
     }
 }
 .app.dark-mode {
