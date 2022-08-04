@@ -28,6 +28,13 @@
     user-select: none;
 }
 
+@mixin gradient-text($gradient) {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: $gradient;
+}
+
 @mixin hover {
     cursor: pointer;
 }

@@ -1,73 +1,69 @@
+@import './mixins.scss';
+
 .validation-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex(column, center, center);
     padding: 36px;
     background-color: #fff;
+
+    h3 {
+        @include gradient-text(
+            linear-gradient(to right, #19c1ec 0%, #f35aae 100%)
+        );
+        @include font(6rem, 600);
+        letter-spacing: 16px;
+        text-transform: uppercase;
+    }
+    form {
+        @include flex(column, center, center);
+
+        button {
+            background-color: #12e5de;
+        }
+    }
 }
-.validation-title {
-    font-size: 6rem;
-    font-weight: 600;
-    letter-spacing: 16px;
-    text-transform: uppercase;
-    background-image: linear-gradient(to right, #19c1ec 0%, #f35aae 100%);
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-}
-.validation-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 .form-groups {
+    @include flex(row, space-around, flex-start, wrap);
     margin-top: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-}
-.form-group {
-    margin: 0 8px;
-    padding: 8px;
-    width: 20%;
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-.form-group label,
-.form-group p {
-    font-size: 2.8rem;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 8px 16px;
-    margin: 4px 0;
-    height: 45px;
-    font-size: 2rem;
-    outline: none;
-}
-.form-group input[type='radio'],
-.form-group input[type='checkbox'] {
-    margin-right: 8px;
-    height: 20px;
-    width: 10%;
-}
-.form-group input[type='radio'] + label,
-.form-group input[type='checkbox'] + label {
-    font-size: 2.2rem;
-}
-.form-group textarea {
-    max-width: 100%;
-    height: 86px;
-}
-.form-error {
-    font-size: 1.6rem;
-    width: 100%;
-    display: inline-block;
+
+    .form-group {
+        @include flex(column, flex-start, unset);
+        @include size(20%, unset);
+        margin: 0 8px;
+        padding: 8px;
+
+        label,
+        p {
+            font-size: 2.8rem;
+        }
+
+        input,
+        select,
+        textarea {
+            @include size(100%, 45px);
+            outline: none;
+            padding: 8px 16px;
+            margin: 4px 0;
+            font-size: 2rem;
+        }
+        input[type='radio'],
+        input[type='checkbox'] {
+            @include size(10%, 20px);
+            margin-right: 8px;
+        }
+        input[type='radio'] + label,
+        input[type='checkbox'] + label {
+            font-size: 2.2rem;
+        }
+        textarea {
+            max-width: 100%;
+            height: 86px;
+        }
+
+        small {
+            font-size: 1.6rem;
+            width: 100%;
+            display: inline-block;
+        }
+    }
 }

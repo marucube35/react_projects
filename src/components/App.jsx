@@ -31,31 +31,6 @@ function NotFound() {
     return <div className="wrapper">The page you looking for is not found</div>
 }
 
-const validators = {
-    firstName: [
-        { func: 'isAlpha' },
-        { func: 'isLength', options: { min: 3, max: 12 } }
-    ],
-    lastName: [
-        { func: 'isAlpha' },
-        { func: 'isLength', options: { min: 3, max: 12 } }
-    ],
-    email: [{ func: 'isEmail' }],
-    tel: [{ func: 'isMobilePhone' }],
-    weight: [{ func: 'isAlphanumeric' }],
-    country: [{ func: 'isAlpha' }]
-}
-const messages = {
-    firstName:
-        "Name's length must be between 3 and 12 and only characters are accepted.",
-    lastName:
-        "Name's length must be between 3 and 12 and only characters are accepted.",
-    email: 'Email is invalid, valid format: example@domain.com',
-    tel: "Telephone's length must be between 6 and 12 and only numbers are accepted.",
-    weight: 'Weight must be positive number.',
-    country: 'You have not selected the country.'
-}
-
 class App extends Component {
     constructor(props) {
         super(props)
@@ -125,9 +100,7 @@ class App extends Component {
                             />
                             <Route
                                 path="theme-backgrounds"
-                                element={
-                                    <ThemeBackgrounds data={seasons} />
-                                }
+                                element={<ThemeBackgrounds data={seasons} />}
                             />
                             <Route
                                 path="event-handlers"
@@ -139,12 +112,7 @@ class App extends Component {
                             />
                             <Route
                                 path="ultimate-validation"
-                                element={
-                                    <UltimateValidation
-                                        validators={validators}
-                                        messages={messages}
-                                    />
-                                }
+                                element={<UltimateValidation />}
                             />
                             <Route
                                 index

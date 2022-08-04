@@ -1,35 +1,32 @@
-// index.js
-import React, { Component } from 'react'
+import { Component } from 'react'
 import validator from 'validator'
+import options from '../data/options'
+import '../styles/ultimate_validation.scss'
 
-const options = [
-    {
-        value: '0',
-        label: '-- Select Country--'
-    },
-    {
-        value: 'Finland',
-        label: 'Finland'
-    },
-    {
-        value: 'Sweden',
-        label: 'Sweden'
-    },
-    {
-        value: 'Norway',
-        label: 'Norway'
-    },
-    {
-        value: 'Denmark',
-        label: 'Denmark'
-    }
-]
-
-const selectOptions = options.map(({ value, label }) => (
-    <option key={value} value={value}>
-        {label}
-    </option>
-))
+const validators = {
+    firstName: [
+        { func: 'isAlpha' },
+        { func: 'isLength', options: { min: 3, max: 12 } }
+    ],
+    lastName: [
+        { func: 'isAlpha' },
+        { func: 'isLength', options: { min: 3, max: 12 } }
+    ],
+    email: [{ func: 'isEmail' }],
+    tel: [{ func: 'isMobilePhone' }],
+    weight: [{ func: 'isAlphanumeric' }],
+    country: [{ func: 'isAlpha' }]
+}
+const messages = {
+    firstName:
+        "Name's length must be between 3 and 12 and only characters are accepted.",
+    lastName:
+        "Name's length must be between 3 and 12 and only characters are accepted.",
+    email: 'Email is invalid, valid format: example@domain.com',
+    tel: "Telephone's length must be between 6 and 12 and only numbers are accepted.",
+    weight: 'Weight must be positive number.',
+    country: 'You have not selected the country.'
+}
 
 export default class UltimateValidation extends Component {
     constructor(props) {
@@ -55,12 +52,10 @@ export default class UltimateValidation extends Component {
                 firstName: false,
                 lastName: false
             },
-            errors: {
-                firstName: '',
-                lastName: ''
-            }
+            errors: {}
         }
     }
+
     handleChange = (e) => {
         const { name, value, type, checked } = e.target
 
@@ -87,14 +82,8 @@ export default class UltimateValidation extends Component {
             () => this.isValid(name)
         )
     }
-    setError = (name, error) => {
-        this.setState({
-            errors: { ...this.state.errors, [name]: error }
-        })
-    }
-    isValid = (name) => {
-        const { validators, messages } = this.props
 
+    isValid = (name) => {
         if (this.state.focused[name]) {
             const rules = validators[name]
 
@@ -106,9 +95,39 @@ export default class UltimateValidation extends Component {
         } else this.setError(name, '')
     }
     isEmpty = (name) => {
-        if (validator.isEmpty(this.state[name])) {
-            this.setError(name, 'This field can not be empty')
+        if (validator.isEmpty(this.state[name]))
+            return { [name]: 'This field can not be empty' }
+        return { [name]: '' }
+    }
+    setError = (name, error) => {
+        this.setState({
+            errors: { ...this.state.errors, [name]: error }
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        // Get data
+        const { focused, errors, skills, ...data } = this.state
+
+        // Validate
+        this.validate(data)
+
+        // Format data
+        data.skills = this.formatSkills(this.state.skills)
+
+        // Transfer data
+        console.log(data)
+    }
+    validate(data) {
+        let newErrors = {}
+        for (const name in data) {
+            console.log(name)
+            newErrors = { ...newErrors, ...this.isEmpty(name) }
         }
+
+        this.setState({ errors: { ...this.state.errors, ...newErrors } })
     }
     formatSkills = (skills) => {
         const formattedSkills = []
@@ -119,36 +138,12 @@ export default class UltimateValidation extends Component {
         }
         return formattedSkills
     }
-    handleSubmit = (e) => {
-        e.preventDefault()
-
-        // Get data
-        const { skills, focused, errors, ...data } = this.state
-
-        // Validate
-        for (const name in data) {
-            setTimeout(() => {
-                this.isEmpty(name)
-            }, 0)
-        }
-
-        // Format data
-
-        data.skills = this.formatSkills(skills)
-
-        // Transfer data
-        console.log(this.state)
-    }
 
     render() {
         return (
             <div className="validation-wrapper">
                 <h3 className="validation-title">Ultimate Form</h3>
-                <form
-                    onSubmit={this.handleSubmit}
-                    noValidate
-                    className="validation-form"
-                >
+                <form onSubmit={this.handleSubmit} className="validation-form">
                     <div className="form-groups">
                         <div className="form-group">
                             <label htmlFor="firstName">First Name</label>
@@ -161,9 +156,7 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 placeholder="First Name"
                             />
-                            <small className="form-error">
-                                {this.state.errors.firstName}
-                            </small>
+                            <small>{this.state.errors.firstName}</small>
                         </div>
 
                         <div className="form-group">
@@ -176,9 +169,7 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 placeholder="Last Name"
                             />
-                            <small className="form-error">
-                                {this.state.errors.lastName}
-                            </small>
+                            <small>{this.state.errors.lastName}</small>
                         </div>
 
                         <div className="form-group">
@@ -191,9 +182,7 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 placeholder="Email"
                             />
-                            <small className="form-error">
-                                {this.state.errors.email}
-                            </small>
+                            <small>{this.state.errors.email}</small>
                         </div>
 
                         <div className="form-group">
@@ -206,9 +195,7 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 placeholder="Tel"
                             />
-                            <small className="form-error">
-                                {this.state.errors.tel}
-                            </small>
+                            <small>{this.state.errors.tel}</small>
                         </div>
 
                         <div className="form-group">
@@ -220,9 +207,7 @@ export default class UltimateValidation extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Date of Birth"
                             />
-                            <small className="form-error">
-                                {this.state.errors.dateOfBirth}
-                            </small>
+                            <small>{this.state.errors.dateOfBirth}</small>
                         </div>
 
                         <div className="form-group">
@@ -237,9 +222,7 @@ export default class UltimateValidation extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Favorite Color"
                             />
-                            <small className="form-error">
-                                {this.state.errors.favoriteColor}
-                            </small>
+                            <small>{this.state.errors.favoriteColor}</small>
                         </div>
 
                         <div className="form-group">
@@ -253,9 +236,7 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 placeholder="Weight in Kg"
                             />
-                            <small className="form-error">
-                                {this.state.errors.weight}
-                            </small>
+                            <small>{this.state.errors.weight}</small>
                         </div>
 
                         <div className="form-group">
@@ -266,11 +247,13 @@ export default class UltimateValidation extends Component {
                                 onBlur={this.handleBlur}
                                 id="country"
                             >
-                                {selectOptions}
+                                {options.map(({ value, label }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                             </select>
-                            <small className="form-error">
-                                {this.state.errors.country}
-                            </small>
+                            <small>{this.state.errors.country}</small>
                         </div>
 
                         <div className="form-group">
@@ -308,9 +291,7 @@ export default class UltimateValidation extends Component {
                                 />
                                 <label htmlFor="other">Other</label>
                             </div>
-                            <small className="form-error">
-                                {this.state.errors.gender}
-                            </small>
+                            <small>{this.state.errors.gender}</small>
                         </div>
 
                         <div className="form-group">
@@ -342,9 +323,7 @@ export default class UltimateValidation extends Component {
                                 />
                                 <label htmlFor="javascript">JavaScript</label>
                             </div>
-                            <small className="form-error">
-                                {this.state.errors.skills}
-                            </small>
+                            <small>{this.state.errors.skills}</small>
                         </div>
 
                         <div className="form-group">
@@ -358,19 +337,19 @@ export default class UltimateValidation extends Component {
                                 rows="10"
                                 placeholder="Write about yourself ..."
                             />
-                            <small className="form-error">
-                                {this.state.errors.bio}
-                            </small>
+                            <small>{this.state.errors.bio}</small>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="file">File</label>
                             <input
                                 type="file"
-                                name="file"
                                 id="file"
+                                name="file"
+                                value={this.state.file}
                                 onChange={this.handleChange}
                             />
+                            <small>{this.state.errors.file}</small>
                         </div>
                     </div>
                     <button type="submit" className="button">
