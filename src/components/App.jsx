@@ -1,6 +1,6 @@
 // React
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { React, Component } from 'react'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Data
 import fe_techs from '../data/fe_techs'
@@ -13,6 +13,7 @@ import seasons from '../data/seasons'
 import '../styles/main.scss'
 
 // Components
+import Navbar from './Navbar'
 import FrontEndTechs from './FETechs'
 import SubcribeForm from './SubcribeForm'
 import UserCard from './UserCard'
@@ -25,7 +26,6 @@ import ThemeBackgrounds from './ThemeBackgrounds'
 import EventHandlers from './EventHandlers'
 import ObjectChasing from './ObjectChasing'
 import UltimateValidation from './UltimateValidation'
-import Navbar from './Navbar'
 
 function NotFound() {
     return (
@@ -63,31 +63,36 @@ class App extends Component {
                     <div className="pages">
                         <Routes>
                             <Route
-                                path="/fe-techs"
+                                path="/"
+                                element={<UserCard user_infos={user_infos} />}
+                            />
+                            <Route path="*" element={<NotFound />} />
+                            <Route
+                                path="fe-techs"
                                 element={<FrontEndTechs fe_techs={fe_techs} />}
                             />
                             <Route
-                                path="/subcribe-form"
+                                path="subcribe-form"
                                 element={<SubcribeForm />}
                             />
                             <Route
-                                path="/user-card"
+                                path="user-card"
                                 element={<UserCard user_infos={user_infos} />}
                             />
                             <Route
-                                path="/rgb-generator"
+                                path="rgb-generator"
                                 element={<RGBGenerator quantity={5} />}
                             />
                             <Route
-                                path="/hex-generator"
+                                path="hex-generator"
                                 element={<HexColorGenerator quantity={35} />}
                             />
                             <Route
-                                path="/number-generator"
+                                path="number-generator"
                                 element={<NumberGenerator quantity={36} />}
                             />
                             <Route
-                                path="/world-population"
+                                path="world-population"
                                 element={
                                     <WorldPopulation
                                         countries={tenHighestPopulation}
@@ -95,7 +100,7 @@ class App extends Component {
                                 }
                             />
                             <Route
-                                path="/random-countries"
+                                path="random-countries"
                                 element={
                                     <RandomCountries
                                         countries={countries_data}
@@ -103,27 +108,21 @@ class App extends Component {
                                 }
                             />
                             <Route
-                                path="/theme-backgrounds"
+                                path="theme-backgrounds"
                                 element={<ThemeBackgrounds data={seasons} />}
                             />
                             <Route
-                                path="/event-handlers"
+                                path="event-handlers"
                                 element={<EventHandlers />}
                             />
                             <Route
-                                path="/object-chasing"
+                                path="object-chasing"
                                 element={<ObjectChasing />}
                             />
                             <Route
-                                path="/ultimate-validation"
+                                path="ultimate-validation"
                                 element={<UltimateValidation />}
                             />
-
-                            <Route
-                                path="/"
-                                element={<UserCard user_infos={user_infos} />}
-                            />
-                            <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </div>
                 </div>
