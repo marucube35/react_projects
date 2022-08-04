@@ -37,7 +37,7 @@ class RandomCountries extends Component {
     }
 
     render() {
-        const { flag, name, ...rest } =
+        const { flag, name, ...infos } =
             this.countries[this.state.currentCountry]
 
         return (
@@ -48,7 +48,7 @@ class RandomCountries extends Component {
                         <h1>{name}</h1>
                     </div>
                     <div className="random-country-body">
-                        {this.renderInfos(rest)}
+                        {this.renderInfos(infos)}
                     </div>
                 </div>
                 <button

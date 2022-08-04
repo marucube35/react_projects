@@ -1,12 +1,12 @@
-import { React, Component } from 'react'
-
+import { Component } from 'react'
+import '../styles/object_chasing.scss'
 class Object extends Component {
     render() {
-        const { x: left, y: top } = this.props.position
-        const style = { left, top }
+        const { left, top, transform } = this.props.position
+
         return (
             <div
-                style={style}
+                style={{ left, top, transform }}
                 className="object"
                 onClick={this.props.handleClick}
             >
@@ -16,25 +16,28 @@ class Object extends Component {
     }
 }
 
-export default class ObjectChasing extends Component {
+class ObjectChasing extends Component {
     state = {
-        x: '',
-        y: ''
+        left: '',
+        top: ''
     }
+
     handleClick = (e) => {
         console.log(e.target)
-        let randomX = Math.round(11 + Math.random() * 78) + '%'
-        let randomY = Math.round(11 + Math.random() * 78) + '%'
-        this.setState({ x: randomX, y: randomY })
+        let randomX = `${Math.round(Math.random() * 100)}%`
+        let randomY = `${Math.round(Math.random() * 100)}%`
+        let transform = `translate(-${randomX}, -${randomY})`
+
+        this.setState({ left: randomX, top: randomY, transform })
     }
+
     render() {
         return (
             <div className="chasing-wrapper">
-                <Object
-                    handleClick={this.handleClick}
-                    position={{ x: this.state.x, y: this.state.y }}
-                />
+                <Object handleClick={this.handleClick} position={this.state} />
             </div>
         )
     }
 }
+
+export default ObjectChasing

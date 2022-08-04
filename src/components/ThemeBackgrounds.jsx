@@ -1,44 +1,34 @@
-// React
-import React from 'react'
+import { Component } from 'react'
+import '../styles/theme_background.scss'
+import '../animations/loading.scss'
 
-export default class ThemeBackgrounds extends React.Component {
+export default class ThemeBackgrounds extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             currentTheme: 0,
             loaded: false
         }
 
-        setTimeout(this.loadTheme, 5000)
-
-        const {
-            data: { themes, backgrounds, buttonColors, colors }
-        } = props
-
-        this.themes = themes
-        this.backgrounds = backgrounds
-        this.buttonColors = buttonColors
-        this.colors = colors
+        setTimeout(this.loadTheme, 1000)
     }
+
+    static getDerivedStateFromProps({
+        data: { themes, backgrounds, buttonColors, colors }
+    }) {
+        return { themes, backgrounds, buttonColors, colors }
+    }
+
     loadTheme = () => {
         this.setState({ loaded: true })
     }
-    getNextTheme = () => {
-        const { currentTheme } = this.state
-        let nextTheme = (currentTheme + 1) % this.themes.length
-        return nextTheme
-    }
     changeTheme = () => {
-        this.setState({ currentTheme: this.getNextTheme() })
+        const { currentTheme, themes } = this.state
+        this.setState({ currentTheme: (currentTheme + 1) % themes.length })
     }
-    render() {
-        const {
-            state: { currentTheme },
-            themes,
-            backgrounds,
-            buttonColors,
-            colors
-        } = this
+    generateBackgroundStyle() {
+        const { currentTheme, backgrounds } = this.state
 
         const backGroundStyle = {
             backgroundImage: `
@@ -48,24 +38,37 @@ export default class ThemeBackgrounds extends React.Component {
             url(${backgrounds[currentTheme]})`
         }
 
+        return backGroundStyle
+    }
+    generateButtonStyle() {
+        const { currentTheme, buttonColors, colors } = this.state
+
         const buttonStyle = {
             backgroundColor: buttonColors[currentTheme],
             color: colors[currentTheme]
         }
 
+        return buttonStyle
+    }
+
+    render() {
+        const { currentTheme, themes } = this.state
+
         if (this.state.loaded)
             return (
-                <div style={backGroundStyle} className="seasons-wrapper">
+                <div
+                    style={this.generateBackgroundStyle()}
+                    className="seasons-wrapper"
+                >
                     <button
                         onClick={this.changeTheme}
-                        style={buttonStyle}
+                        style={this.generateButtonStyle()}
                         type="button"
-                        className="seasons-button"
                     >
                         {themes[currentTheme]}
                     </button>
                 </div>
             )
-        else return <div className="seasons-wrapper skeleton-screen"></div>
+        else return <div className="seasons-wrapper loading"></div>
     }
 }

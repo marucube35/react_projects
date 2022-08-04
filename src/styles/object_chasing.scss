@@ -1,0 +1,27 @@
+@import './mixins.scss';
+
+.chasing-wrapper {
+    padding: 24px;
+    height: 800px;
+    background-color: #fff;
+    position: relative;
+
+    div {
+        @include font(3rem, 800);
+        @include unselectable;
+        @include hover;
+        min-width: 30%;
+        padding: 20px;
+        border-radius: 8px;
+        margin: auto;
+        color: #fff;
+        background-color: #61dbfc;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

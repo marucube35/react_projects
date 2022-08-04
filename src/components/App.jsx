@@ -7,16 +7,7 @@ import fe_techs from '../data/fe_techs'
 import user_infos from '../data/user_infos'
 import tenHighestPopulation from '../data/tenHighestPopulation'
 import countries_data from '../data/countries_data'
-
-// Images
-import spring from '../assets/images/spring.jpg'
-import summer from '../assets/images/summer.jpg'
-import autumn from '../assets/images/autumn.jpg'
-import winter from '../assets/images/winter.jpg'
-import morning from '../assets/images/morning.jpg'
-import noon from '../assets/images/noon.jpg'
-import evening from '../assets/images/evening.jpg'
-import night from '../assets/images/night.jpg'
+import seasons from '../data/seasons'
 
 // CSS
 import '../styles/main.scss'
@@ -40,18 +31,6 @@ function NotFound() {
     return <div className="wrapper">The page you looking for is not found</div>
 }
 
-const seasons = {
-    themes: ['Spring', 'Summer', 'Autumn', 'Winter'],
-    backgrounds: [spring, summer, autumn, winter],
-    buttonColors: ['#e55e75', '#fbf88d', '#b61a25', '#218ec9'],
-    colors: ['#fff', '#000', '#fff', '#fff']
-}
-const timeOfDays = {
-    themes: ['Morning', 'Noon', 'Evening', 'Night'],
-    backgrounds: [morning, noon, evening, night],
-    buttonColors: ['#ffb4b4', '#fff9ca', '#ffdeb4', '#b2a4ff'],
-    colors: ['#fff', '#000', '#000', '#fff']
-}
 const validators = {
     firstName: [
         { func: 'isAlpha' },
@@ -145,9 +124,10 @@ class App extends Component {
                                 }
                             />
                             <Route
-                                // TODO: Add day time themes to the app
                                 path="theme-backgrounds"
-                                element={<ThemeBackgrounds data={seasons} />}
+                                element={
+                                    <ThemeBackgrounds data={seasons} />
+                                }
                             />
                             <Route
                                 path="event-handlers"

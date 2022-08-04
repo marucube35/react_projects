@@ -1,0 +1,20 @@
+@import './mixins.scss';
+
+.seasons-wrapper {
+    height: 800px;
+    padding: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include flex(row, center, flex-end);
+
+    button {
+        @include hover-scale;
+        width: 200px;
+        padding: 20px 30px;
+        font-size: 4rem;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0px 0px 10px rgba(251, 249, 249, 0.5);
+    }
+}

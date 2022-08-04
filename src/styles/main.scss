@@ -62,15 +62,14 @@ body,
         }
 
         .button {
-            @include hovered;
+            @include hover-blur;
             @include borderless;
             @include unselectable;
-            padding: 8px 24px;
+            padding: 12px 24px;
             border-radius: 4px;
             margin-top: 32px;
             font-size: 3rem;
             color: #fff;
-            background-color: #000;
         }
     }
 }

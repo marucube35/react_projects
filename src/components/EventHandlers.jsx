@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-export default class EventHandlers extends Component {
+import { Component } from 'react'
+import '../styles/event_handlers.scss'
+class EventHandlers extends Component {
     state = {
         message: 'Mouse handler',
         dropMessage: ''
@@ -65,10 +66,10 @@ export default class EventHandlers extends Component {
     render() {
         return (
             <div className="handlers-wrapper">
-                <h1 className="handlers-title">Event Handlers</h1>
-                <p className="handlers-subtitle">View output in console</p>
+                <h1>Event Handlers</h1>
+                <p>View output in console</p>
 
-                <form className="form-handler" onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         className="input-handler"
                         type="text"
@@ -79,7 +80,11 @@ export default class EventHandlers extends Component {
                         onChange={this.handleChange}
                         placeholder="Key handler"
                     />
-                    <input className="button-handler" type="submit" value="Submit"></input>
+                    <input
+                        className="button-handler"
+                        type="submit"
+                        value="Submit"
+                    ></input>
                 </form>
                 <div
                     onMouseEnter={this.handleMouseEnter}
@@ -113,3 +118,5 @@ export default class EventHandlers extends Component {
         )
     }
 }
+
+export default EventHandlers
