@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/react_projects/home/static/css/main.f1a62d3e.css",
-    "main.js": "/react_projects/home/static/js/main.5b7f2438.js",
-    "static/media/autumn.jpg": "/react_projects/home/static/media/autumn.fa46a7f772569d634141.jpg",
-    "static/media/summer.jpg": "/react_projects/home/static/media/summer.646f80d642db05eb0ea2.jpg",
-    "static/media/spring.jpg": "/react_projects/home/static/media/spring.5cf104477f6b64a90a69.jpg",
-    "static/media/winter.jpg": "/react_projects/home/static/media/winter.9a9e2ae98d4eef914705.jpg",
-    "static/media/avatar.png": "/react_projects/home/static/media/avatar.8d871df51389cee80f46.png",
-    "index.html": "/react_projects/home/index.html",
-    "main.f1a62d3e.css.map": "/react_projects/home/static/css/main.f1a62d3e.css.map",
-    "main.5b7f2438.js.map": "/react_projects/home/static/js/main.5b7f2438.js.map"
+    "main.css": "/react_projects/static/css/main.f1a62d3e.css",
+    "main.js": "/react_projects/static/js/main.4bcd8824.js",
+    "static/media/autumn.jpg": "/react_projects/static/media/autumn.fa46a7f772569d634141.jpg",
+    "static/media/summer.jpg": "/react_projects/static/media/summer.646f80d642db05eb0ea2.jpg",
+    "static/media/spring.jpg": "/react_projects/static/media/spring.5cf104477f6b64a90a69.jpg",
+    "static/media/winter.jpg": "/react_projects/static/media/winter.9a9e2ae98d4eef914705.jpg",
+    "static/media/avatar.png": "/react_projects/static/media/avatar.8d871df51389cee80f46.png",
+    "index.html": "/react_projects/index.html",
+    "main.f1a62d3e.css.map": "/react_projects/static/css/main.f1a62d3e.css.map",
+    "main.4bcd8824.js.map": "/react_projects/static/js/main.4bcd8824.js.map"
   },
   "entrypoints": [
     "static/css/main.f1a62d3e.css",
-    "static/js/main.5b7f2438.js"
+    "static/js/main.4bcd8824.js"
   ]
 }
